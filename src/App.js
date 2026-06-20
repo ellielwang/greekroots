@@ -448,8 +448,8 @@ function ClassByView({ members, byId }) {
                       style={{background:isSel?c+"22":"#0e0e1a",border:`1px solid ${isSel?c:"#1e1e2e"}`,borderRadius:10,padding:"9px 13px",cursor:"pointer",transition:"all .15s",minWidth:150,position:"relative",overflow:"hidden"}}>
                       <div style={{position:"absolute",left:0,top:0,bottom:0,width:3,background:c,borderRadius:"10px 0 0 10px"}}/>
                       <div style={{paddingLeft:6}}>
-                        <div style={{fontSize:13,fontWeight:500,color:"#f0f0f0",lineHeight:1.3}}>{m.name}</div>
-                        {m.nickname && <div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:1}}>"{m.nickname}"</div>}
+                        <div style={{fontSize:13,fontWeight:500,color:"#f0f0f0",lineHeight:1.3}}>{m.status==="deletter"?"Former Member":m.name}</div>
+                        {m.nickname && m.status!=="deletter" && <div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:1}}>"{m.nickname}"</div>}
                         {big && <div style={{fontSize:10,color:"#444",marginTop:3}}>↑ {big.name}</div>}
                         {m.dynasty && <div style={{fontSize:10,color:DYNASTY_COLORS[m.dynasty]||"#555",marginTop:1}}>{m.dynasty}</div>}
                       </div>
@@ -598,7 +598,7 @@ export default function App() {
   };
 
   const DYNASTIES = Object.keys(DYNASTY_COLORS);
-  const stats = { total: members.length, classes: CLASS_ORDER.length, newest: "Alpha Phi (Spring 2026)" };
+  const stats = { total: members.length, classes: CLASS_ORDER.length, newest: "Alpha Phi SP26" };
 
   const edges = [];
   active.forEach(m => {
@@ -647,7 +647,7 @@ export default function App() {
                   onMouseEnter={e=>e.currentTarget.style.background="#18183a"}
                   onMouseLeave={e=>e.currentTarget.style.background="transparent"}
                   onClick={()=>pick(m)}>
-                  <div style={{fontSize:13,color:"#e8e8f0",fontWeight:500}}>{m.name}</div>
+                  <div style={{fontSize:13,color:"#e8e8f0",fontWeight:500}}>{m.status==="deletter"?"Former Member":m.name}</div>
                   <div style={{fontSize:11,color:"#555",display:"flex",gap:8}}>
                     {m.nickname&&<span style={{color:nodeC(m)}}>{m.nickname}</span>}
                     <span>{m.class_name}</span>
@@ -697,7 +697,7 @@ export default function App() {
       <div style={{position:"absolute",top:68,right:20,zIndex:9,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:10,padding:"8px 16px",display:"flex",gap:20,alignItems:"center",pointerEvents:"none"}}>
         <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:700,color:"#f5f5f5",fontFamily:"'Playfair Display',serif"}}>{stats.total}</div><div style={{fontSize:9,color:"#444",textTransform:"uppercase",letterSpacing:.8}}>Members</div></div>
         <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:700,color:"#f5f5f5",fontFamily:"'Playfair Display',serif"}}>{CLASS_ORDER.length}</div><div style={{fontSize:9,color:"#444",textTransform:"uppercase",letterSpacing:.8}}>Classes</div></div>
-        <div style={{textAlign:"center"}}><div style={{fontSize:11,fontWeight:600,color:"#c0392b"}}>Newest</div><div style={{fontSize:10,color:"#888"}}>Alpha Phi '26</div></div>
+        <div style={{textAlign:"center"}}><div style={{fontSize:11,fontWeight:600,color:"#c0392b"}}>Newest</div><div style={{fontSize:10,color:"#888"}}>Alpha Phi SP26</div></div>
       </div>
 
       {/* Zoom controls */}
@@ -760,7 +760,7 @@ export default function App() {
                   stroke={isSel||isHL?c:"#1c1c30"} strokeWidth={isSel||isHL?1.5:.7}/>
                 <rect x={0} y={0} width={4} height={NODE_H} rx={4} fill={c} opacity={.9}/>
                 <text x={13} y={21} fill="#f0f0f0" fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif">
-                  {m.name.length>18?m.name.slice(0,17)+"…":m.name}
+                  {m.status==="deletter"?"Former Member":(m.name.length>18?m.name.slice(0,17)+"…":m.name)}
                 </text>
                 {m.nickname&&<text x={13} y={35} fill={c} fontSize={10.5} fontFamily="'DM Sans',sans-serif" opacity={.95}>{m.nickname.length>20?m.nickname.slice(0,19)+"…":m.nickname}</text>}
                 <text x={13} y={m.nickname?49:37} fill="#444" fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
@@ -781,7 +781,7 @@ export default function App() {
           onClick={e=>e.stopPropagation()}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
             <div>
-              <div style={{fontSize:15,fontWeight:600,color:"#f0f0f0",lineHeight:1.3}}>{selM.name}</div>
+              <div style={{fontSize:15,fontWeight:600,color:"#f0f0f0",lineHeight:1.3}}>{selM.status==="deletter"?"Former Member":selM.name}</div>
               {selM.nickname&&<div style={{fontSize:12,color:nodeC(selM),marginTop:2,fontStyle:"italic"}}>"{selM.nickname}"</div>}
             </div>
             <button onClick={()=>{setSelected(null);setHighlighted(null);}} style={{background:"none",border:"none",color:"#444",cursor:"pointer",fontSize:19,lineHeight:1}}>×</button>
@@ -807,7 +807,7 @@ export default function App() {
                 <div style={{display:"flex",flexDirection:"column",gap:3,maxHeight:130,overflowY:"auto"}}>
                   {(byId[selM.id]?.children||[]).map(c=>(
                     <div key={c.id} style={{color:"#aaa",fontSize:12,cursor:"pointer",paddingLeft:8,borderLeft:`2px solid ${nodeC(c)}44`}} onClick={()=>pick(c)}>
-                      {c.name}{c.nickname&&<span style={{color:nodeC(c),marginLeft:4,fontStyle:"italic",fontSize:11}}>"{c.nickname}"</span>}
+                      {c.status==="deletter"?"Former Member":c.name}{!c.status||c.status!=="deletter"?c.nickname&&<span style={{color:nodeC(c),marginLeft:4,fontStyle:"italic",fontSize:11}}>"{c.nickname}"</span>:null}
                     </div>
                   ))}
                 </div>
