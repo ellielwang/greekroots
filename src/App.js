@@ -489,6 +489,7 @@ function ClassByView({ members, byId }) {
 }
 
 
+function ClassHistoryView() {
   return (
     <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:"#06060f"}}>
       <div style={{maxWidth:780,margin:"0 auto"}}>
