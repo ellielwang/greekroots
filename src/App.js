@@ -652,6 +652,10 @@ export default function App() {
           </div>
         </div>
       )}
+      {/* GreekRoots watermark */}
+      <div style={{position:"absolute",bottom:12,left:20,zIndex:9,fontSize:10,color:"#2a2a3a",letterSpacing:1,fontFamily:"'DM Sans',sans-serif",pointerEvents:"none"}}>
+        GreekRoots
+      </div>
     </div>
   );
 }
