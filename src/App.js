@@ -353,6 +353,105 @@ function getLineage(id, byId) {
   return s;
 }
 
+
+const CLASS_HISTORY = [
+  {class_name:"Founding Mother", semester:"April 2, 1998", nmd:null, nme:null, president:null},
+  {class_name:"Charter", semester:"Fall 1998", nmd:null, nme:null, president:null},
+  {class_name:"Alpha", semester:"Spring 1999", nmd:null, nme:null, president:null},
+  {class_name:"Beta", semester:"Fall 1999", nmd:null, nme:null, president:null},
+  {class_name:"Gamma", semester:"2000", nmd:null, nme:null, president:null},
+  {class_name:"Delta", semester:"Fall 2001", nmd:null, nme:null, president:null},
+  {class_name:"Epsilon", semester:"2002", nmd:null, nme:null, president:null},
+  {class_name:"Zeta", semester:"Fall 2002", nmd:null, nme:null, president:null},
+  {class_name:"Eta", semester:"Fall 2004", nmd:null, nme:null, president:null},
+  {class_name:"Theta", semester:"Fall 2005", nmd:null, nme:null, president:null},
+  {class_name:"Iota", semester:"Spring 2006", nmd:null, nme:null, president:null},
+  {class_name:"Kappa", semester:"Fall 2006", nmd:null, nme:null, president:null},
+  {class_name:"Lambda", semester:"Spring 2007", nmd:null, nme:null, president:null},
+  {class_name:"Mu", semester:"Fall 2007", nmd:null, nme:null, president:null},
+  {class_name:"Nu", semester:"Spring 2008", nmd:null, nme:null, president:null},
+  {class_name:"Xi", semester:"Fall 2008", nmd:null, nme:null, president:null},
+  {class_name:"Omicron", semester:"Spring 2009", nmd:null, nme:null, president:null},
+  {class_name:"Pi", semester:"Fall 2009", nmd:null, nme:null, president:null},
+  {class_name:"Rho", semester:"Fall 2010", nmd:"Irene Yi-Ling Yang", nme:null, president:null},
+  {class_name:"Sigma", semester:"Spring 2011", nmd:null, nme:null, president:null},
+  {class_name:"Tau", semester:"Fall 2011", nmd:"Irene Yi-Ling Yang", nme:null, president:null},
+  {class_name:"Upsilon", semester:"Fall 2012", nmd:"Cindy Nguyen", nme:null, president:"Lizzy Hall"},
+  {class_name:"Phi", semester:"Spring 2013", nmd:"Alysia Thao", nme:null, president:"Lizzy Hall"},
+  {class_name:"Chi", semester:"Fall 2013", nmd:"Elizabeth Hall", nme:null, president:"Jessica Pham"},
+  {class_name:"Psi", semester:"Spring 2014", nmd:"Lydia Chang", nme:null, president:"Jessica Pham"},
+  {class_name:"Alpha Alpha", semester:"Fall 2014", nmd:"Cecilia Ko", nme:"Esther Shim", president:"Angela Adams"},
+  {class_name:"Alpha Beta", semester:"Fall 2015", nmd:"Phenix Tang", nme:"Mabel Xu", president:"Mabel Xu"},
+  {class_name:"Alpha Gamma", semester:"Fall 2016", nmd:"Teresa Tran", nme:"Dianna Wong", president:"Stephanie Ujjin"},
+  {class_name:"Alpha Delta", semester:"Spring 2017", nmd:"Siyu Lin", nme:"Ivy Hu", president:"Stephanie Ujjin"},
+  {class_name:"Alpha Epsilon", semester:"Fall 2017", nmd:"Ivy Hu", nme:"Rachel Xu", president:"Teresa Tran"},
+  {class_name:"Alpha Zeta", semester:"Spring 2018", nmd:"Thunwa Klaihathai", nme:"Eva Wei", president:"Teresa Tran"},
+  {class_name:"Alpha Eta", semester:"Fall 2018", nmd:"Yulanda Huang", nme:"Ivy Hu", president:"Thunwa Klaihathai"},
+  {class_name:"Alpha Theta", semester:"Spring 2019", nmd:"Leslie Tran", nme:"Ava Wei", president:"Thunwa Klaihathai"},
+  {class_name:"Alpha Iota", semester:"Fall 2019", nmd:"Kelsey Kim", nme:"Tiffany Chan", president:"Yulanda Huang"},
+  {class_name:"Alpha Kappa", semester:"Spring 2020", nmd:"Reina Garrett", nme:"Sejal Mistry", president:"Yulanda Huang"},
+  {class_name:"Alpha Lambda", semester:"Spring 2021", nmd:"Jenny Nguyen", nme:"Hanna Zheng", president:"Sejal Mistry"},
+  {class_name:"Alpha Mu", semester:"Fall 2021", nmd:"Ashley Go", nme:"Danny Wang", president:"Alyssa Lombres"},
+  {class_name:"Alpha Nu", semester:"Spring 2022", nmd:"Karen Lu", nme:"Elyssa Levitt", president:"Alyssa Lombres"},
+  {class_name:"Alpha Xi", semester:"Fall 2022", nmd:"Katelyn Li", nme:"Lise Xu", president:"Anna Zheng"},
+  {class_name:"Alpha Omicron", semester:"Spring 2023", nmd:"Savannah Young", nme:"Eujin Kang", president:"Anna Zheng"},
+  {class_name:"Alpha Pi", semester:"Fall 2023", nmd:"Jani Christopher", nme:"Camille Argarin", president:"Savannah Young"},
+  {class_name:"Alpha Rho", semester:"Spring 2024", nmd:"Janellyn Bong", nme:"Muriel Ren", president:"Savannah Young"},
+  {class_name:"Alpha Sigma", semester:"Fall 2024", nmd:"Nitya Neema", nme:"Vina Bui", president:"Grace Conn"},
+  {class_name:"Alpha Tau", semester:"Spring 2025", nmd:"Thaomy Pham", nme:"Michelle Jasadipura", president:"Grace Conn"},
+  {class_name:"Alpha Upsilon", semester:"Fall 2025", nmd:"Angie Lin", nme:"Tina Ngo", president:"Simone Cho"},
+  {class_name:"Alpha Phi", semester:"Spring 2026", nmd:"Saahithya Gutta", nme:"Samantha Ferrer-Smallwood", president:"Simone Cho"},
+];
+
+function ClassHistoryView() {
+  return (
+    <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:"#06060f"}}>
+      <div style={{maxWidth:780,margin:"0 auto"}}>
+        <div style={{marginBottom:32}}>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:"#f0f0f0",marginBottom:4}}>Class History</div>
+          <div style={{fontSize:12,color:"#444"}}>NMD (Mama) · NME (Papa) · President for each pledge class</div>
+        </div>
+
+        {/* Table header */}
+        <div style={{display:"grid",gridTemplateColumns:"1.4fr 1fr 1.2fr 1.2fr 1.2fr",gap:0,marginBottom:8,padding:"0 16px"}}>
+          {["Class","Semester","NMD (Mama)","NME (Papa)","President"].map(h=>(
+            <div key={h} style={{fontSize:9,color:"#444",textTransform:"uppercase",letterSpacing:1,fontWeight:600}}>{h}</div>
+          ))}
+        </div>
+
+        {/* Rows */}
+        {CLASS_HISTORY.map((row, i) => {
+          const hasData = row.nmd || row.nme || row.president;
+          const isRecent = ["Alpha Omicron","Alpha Pi","Alpha Rho","Alpha Sigma","Alpha Tau","Alpha Upsilon","Alpha Phi"].includes(row.class_name);
+          return (
+            <div key={row.class_name} style={{
+              display:"grid",
+              gridTemplateColumns:"1.4fr 1fr 1.2fr 1.2fr 1.2fr",
+              gap:0,
+              padding:"12px 16px",
+              borderRadius:10,
+              marginBottom:4,
+              background: isRecent ? "#0e0e1a" : (i%2===0?"#09090f":"transparent"),
+              border: isRecent ? "1px solid #1a1a2e" : "1px solid transparent",
+              transition:"background 0.15s",
+            }}>
+              <div style={{fontSize:13,fontWeight:600,color:isRecent?"#f0f0f0":"#888",fontFamily:"'Playfair Display',serif"}}>{row.class_name}</div>
+              <div style={{fontSize:12,color:"#555"}}>{row.semester}</div>
+              <div style={{fontSize:12,color:row.nmd?"#c0392b":"#2a2a3a"}}>{row.nmd || "—"}</div>
+              <div style={{fontSize:12,color:row.nme?"#0ea5e9":"#2a2a3a"}}>{row.nme || "—"}</div>
+              <div style={{fontSize:12,color:row.president?"#10b981":"#2a2a3a"}}>{row.president || "—"}</div>
+            </div>
+          );
+        })}
+
+        <div style={{marginTop:24,fontSize:11,color:"#2a2a3a",textAlign:"center"}}>
+          NMD = New Member Director · NME = New Member Educator
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function App() {
   const [members, setMembers] = useState(ASR_MEMBERS);
   const [selected, setSelected] = useState(null);
@@ -363,6 +462,7 @@ export default function App() {
   const [pan, setPan] = useState({ x: 80, y: 100 });
   const [isPanning, setIsPanning] = useState(false);
   const [dynastyFilter, setDynastyFilter] = useState(null);
+  const [activeTab, setActiveTab] = useState('tree');
   const [colorMode, setColorMode] = useState("dynasty");
   const [panel, setPanel] = useState(null);
   const [form, setForm] = useState({ name:"", nickname:"", class_name:"Alpha Phi", bigId:"" });
@@ -473,20 +573,28 @@ export default function App() {
           )}
         </div>
 
-        {/* Color toggle */}
-        <div style={{pointerEvents:"all",display:"flex",gap:4,background:"#101020",border:"1px solid #22223a",borderRadius:8,padding:3}}>
+        {/* Tab switcher */}
+        <div style={{pointerEvents:"all",display:"flex",gap:3,background:"#101020",border:"1px solid #22223a",borderRadius:8,padding:3}}>
+          {[["tree","Tree"],["byclass","By Class"],["history","Class History"]].map(([k,l])=>(
+            <button key={k} onClick={()=>setActiveTab(k)} style={{padding:"5px 10px",borderRadius:6,border:"none",fontSize:11,fontWeight:500,cursor:"pointer",
+              background:activeTab===k?"#c0392b":"transparent",color:activeTab===k?"white":"#666",transition:"all .15s",whiteSpace:"nowrap"}}>{l}</button>
+          ))}
+        </div>
+
+        {/* Color toggle - tree only */}
+        {activeTab==="tree" && <div style={{pointerEvents:"all",display:"flex",gap:4,background:"#101020",border:"1px solid #22223a",borderRadius:8,padding:3}}>
           {[["class","By Class"],["dynasty","By Dynasty"]].map(([k,l])=>(
             <button key={k} onClick={()=>setColorMode(k)} style={{padding:"5px 10px",borderRadius:6,border:"none",fontSize:11,fontWeight:500,cursor:"pointer",
               background:colorMode===k?"#c0392b":"transparent",color:colorMode===k?"white":"#666",transition:"all .15s"}}>{l}</button>
           ))}
-        </div>
+        </div>}
 
         <button className="btn bp" style={{pointerEvents:"all"}} onClick={()=>{setPanel("add");setSelected(null);}}>+ Add</button>
         {highlighted&&<button className="btn bg" style={{pointerEvents:"all"}} onClick={()=>{setHighlighted(null);setSelected(null);}}>✕ Clear</button>}
       </div>
 
       {/* Dynasty filter */}
-      <div style={{position:"absolute",top:68,left:20,zIndex:9,display:"flex",gap:6,flexWrap:"wrap",pointerEvents:"all"}}>
+      {activeTab==="tree" && <div style={{position:"absolute",top:68,left:20,zIndex:9,display:"flex",gap:6,flexWrap:"wrap",pointerEvents:"all"}}>
         <button onClick={()=>setDynastyFilter(null)} style={{padding:"4px 10px",borderRadius:20,border:"1px solid",fontSize:11,fontWeight:500,cursor:"pointer",
           borderColor:!dynastyFilter?"white":"#2a2a3a",background:!dynastyFilter?"#c0392b":"transparent",color:!dynastyFilter?"white":"#666",transition:"all .2s"}}>
           All Lines
@@ -497,7 +605,7 @@ export default function App() {
             {d}
           </button>
         ))}
-      </div>
+      </div>}
 
       {/* Stats */}
       <div style={{position:"absolute",top:68,right:20,zIndex:9,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:10,padding:"8px 16px",display:"flex",gap:20,alignItems:"center",pointerEvents:"none"}}>
@@ -507,7 +615,7 @@ export default function App() {
       </div>
 
       {/* Zoom controls */}
-      <div style={{position:"absolute",bottom:24,right:20,zIndex:10,display:"flex",flexDirection:"column",gap:4}}>
+      {activeTab==="tree" && <div style={{position:"absolute",bottom:24,right:20,zIndex:10,display:"flex",flexDirection:"column",gap:4}}>
         {[["＋",()=>setZoom(z=>Math.min(3,z*1.2))],["－",()=>setZoom(z=>Math.max(0.08,z/1.2))],["⊡",()=>{setZoom(0.5);setPan({x:80,y:100});}]].map(([l,fn])=>(
           <button key={l} onClick={fn} style={{width:34,height:34,borderRadius:7,background:"#0c0c1c",border:"1px solid #1a1a2e",color:"#777",fontSize:l==="⊡"?14:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{l}</button>
         ))}
@@ -526,8 +634,8 @@ export default function App() {
         </div>
       )}
 
-      {/* Canvas */}
-      <div ref={svgRef} style={{width:"100%",height:"100%",overflow:"hidden"}}>
+      {/* Canvas - tree only */}
+      {activeTab==="tree" && <div ref={svgRef} style={{width:"100%",height:"100%",overflow:"hidden"}}>
         <svg style={{transform:`translate(${pan.x}px,${pan.y}px) scale(${zoom})`,transformOrigin:"0 0",willChange:"transform"}} width={svgW} height={svgH}>
           <defs>
             {active.map(m=>{
@@ -575,10 +683,13 @@ export default function App() {
             );
           })}
         </svg>
-      </div>
+      </div>}
+
+      {/* Class History View */}
+      {activeTab==="history" && <ClassHistoryView/>}
 
       {/* Detail panel */}
-      {selM&&panel!=="add"&&(
+      {activeTab==="tree"&&selM&&panel!=="add"&&(
         <div style={{position:"absolute",top:"50%",right:20,transform:"translateY(-50%)",width:260,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:14,padding:18,zIndex:20}}
           onClick={e=>e.stopPropagation()}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
@@ -626,7 +737,7 @@ export default function App() {
       )}
 
       {/* Add panel */}
-      {panel==="add"&&(
+      {activeTab==="tree"&&panel==="add"&&(
         <div style={{position:"absolute",top:"50%",right:20,transform:"translateY(-50%)",width:268,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:14,padding:18,zIndex:20}}
           onClick={e=>e.stopPropagation()}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:14}}>
