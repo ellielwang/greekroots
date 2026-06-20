@@ -619,7 +619,7 @@ export default function App() {
         {[["＋",()=>setZoom(z=>Math.min(3,z*1.2))],["－",()=>setZoom(z=>Math.max(0.08,z/1.2))],["⊡",()=>{setZoom(0.5);setPan({x:80,y:100});}]].map(([l,fn])=>(
           <button key={l} onClick={fn} style={{width:34,height:34,borderRadius:7,background:"#0c0c1c",border:"1px solid #1a1a2e",color:"#777",fontSize:l==="⊡"?14:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{l}</button>
         ))}
-      </div>
+      </div>}
 
       {/* Dynasty legend */}
       {colorMode==="dynasty"&&(
