@@ -422,7 +422,7 @@ function ClassHistoryView() {
         {/* Rows */}
         {CLASS_HISTORY.map((row, i) => {
           const hasData = row.nmd || row.nme || row.president;
-          const isRecent = ["Alpha Omicron","Alpha Pi","Alpha Rho","Alpha Sigma","Alpha Tau","Alpha Upsilon","Alpha Phi"].includes(row.class_name);
+          const isRecent = false;
           return (
             <div key={row.class_name} style={{
               display:"grid",
