@@ -177,7 +177,7 @@ const ASR_MEMBERS = [
   {id:"184",name:"Reina Garrett",nickname:"Stella",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"177",dynasty:"Pasithea"},
   {id:"185",name:"Anna Huang",nickname:"Lutéa",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"180",dynasty:"Moxie"},
   {id:"186",name:"Jenny Nguyen",nickname:"Anjezé",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"180",dynasty:"Moxie"},
-  {id:"187",name:"Thao Nguyen2",nickname:"Pleiades",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"170",dynasty:"Snuggle Bear"},
+  {id:"187",name:"Thao Nguyen",nickname:"Pleiades",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"170",dynasty:"Snuggle Bear"},
   {id:"188",name:"Lucy Xiao",nickname:"Hesperus",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"175",dynasty:null},
   {id:"189",name:"Vicky Zhang",nickname:"B612",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"170",dynasty:"Snuggle Bear"},
   {id:"190",name:"Hanna Zheng",nickname:"Hestia",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"169",dynasty:"Pasithea"},
