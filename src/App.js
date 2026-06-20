@@ -448,7 +448,10 @@ function ClassByView({ members, byId }) {
                       style={{background:isSel?c+"22":"#0e0e1a",border:`1px solid ${isSel?c:"#1e1e2e"}`,borderRadius:10,padding:"9px 13px",cursor:"pointer",transition:"all .15s",minWidth:150,position:"relative",overflow:"hidden"}}>
                       <div style={{position:"absolute",left:0,top:0,bottom:0,width:3,background:c,borderRadius:"10px 0 0 10px"}}/>
                       <div style={{paddingLeft:6}}>
-                        <div style={{fontSize:13,fontWeight:500,color:"#f0f0f0",lineHeight:1.3}}>{m.status==="deletter"?"Former Member":m.name}</div>
+                        <div style={{fontSize:13,fontWeight:500,color:"#f0f0f0",lineHeight:1.3,display:"flex",justifyContent:"space-between",alignItems:"center"}}>
+                          <span>{m.status==="deletter"?"Former Member":m.name}</span>
+                          {!isNaN(m.id)&&<span style={{fontSize:10,color:"#333",marginLeft:6}}>#{m.id}</span>}
+                        </div>
                         {m.nickname && m.status!=="deletter" && <div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:1}}>"{m.nickname}"</div>}
                         {big && <div style={{fontSize:10,color:"#444",marginTop:3}}>↑ {big.name}</div>}
                         {m.dynasty && <div style={{fontSize:10,color:DYNASTY_COLORS[m.dynasty]||"#555",marginTop:1}}>{m.dynasty}</div>}
@@ -762,6 +765,7 @@ export default function App() {
                 <text x={13} y={21} fill="#f0f0f0" fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif">
                   {m.status==="deletter"?"Former Member":(m.name.length>18?m.name.slice(0,17)+"…":m.name)}
                 </text>
+                {!isNaN(m.id)&&<text x={NODE_W-8} y={21} fill="#333" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">#{m.id}</text>}
                 {m.nickname&&<text x={13} y={35} fill={c} fontSize={10.5} fontFamily="'DM Sans',sans-serif" opacity={.95}>{m.nickname.length>20?m.nickname.slice(0,19)+"…":m.nickname}</text>}
                 <text x={13} y={m.nickname?49:37} fill="#444" fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
                 {littles>0&&<text x={NODE_W-8} y={49} fill="#444" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">{littles}↓</text>}
