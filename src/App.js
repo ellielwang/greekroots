@@ -294,18 +294,7 @@ const ASR_MEMBERS = [
   {id:"301",name:"Marie Torres",nickname:"Milena",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie"},
   {id:"302",name:"Alexis Vu",nickname:"Reira",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie"},
   {id:"303",name:"Phoebe Warren",nickname:"Lunavie",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"273",dynasty:"Hall"},
-  // Alpha Phi — Spring 2026 (newest class!)
-  {id:"293",name:"Danielle Acas",nickname:"Mayarah",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"280",dynasty:"Snuggle Bear"},
-  {id:"294",name:"Emi Arlong",nickname:"Nytheria",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"279",dynasty:"Lola"},
-  {id:"295",name:"Bhuvanthi Chapalamadugu",nickname:"Twyla",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"277",dynasty:"Lola"},
-  {id:"296",name:"Kayleigh Fong",nickname:"Adelyne",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"274",dynasty:"Lola"},
-  {id:"297",name:"Arushi Mishra",nickname:"Lynnea",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"280",dynasty:"Snuggle Bear"},
-  {id:"298",name:"Hilda Ngo",nickname:"Meilani",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"257",dynasty:"Hall"},
-  {id:"299",name:"Gretchen O'Neal",nickname:"Eellaya",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"275",dynasty:"Moxie"},
-  {id:"300",name:"Jaeyun Sim",nickname:"Erivela",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"265",dynasty:"Pasithea"},
-  {id:"301",name:"Marie Torres",nickname:"Milena",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie"},
-  {id:"302",name:"Alexis Vu",nickname:"Reira",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie"},
-  {id:"303",name:"Phoebe Warren",nickname:"Lunavie",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"273",dynasty:"Hall"},
+
 ];
 
 const DYNASTY_COLORS = {
