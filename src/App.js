@@ -403,7 +403,92 @@ const CLASS_HISTORY = [
   {class_name:"Alpha Phi", semester:"Spring 2026", nmd:"Saahithya Gutta", nme:"Samantha Ferrer-Smallwood", president:"Simone Cho"},
 ];
 
-function ClassHistoryView() {
+function ClassByView({ members, byId }) {
+  const [selM, setSelM] = useState(null);
+  const grouped = {};
+  CLASS_ORDER.forEach(c => { grouped[c] = []; });
+  members.forEach(m => {
+    if (grouped[m.class_name]) grouped[m.class_name].push(m);
+  });
+  const classes = CLASS_ORDER.filter(c => grouped[c]?.length > 0);
+  const nodeC = m => m.dynasty && DYNASTY_COLORS[m.dynasty] ? DYNASTY_COLORS[m.dynasty] : classColor(m.class_name);
+
+  return (
+    <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:"#06060f"}}>
+      <div style={{maxWidth:860,margin:"0 auto",display:"flex",flexDirection:"column",gap:0}}>
+        {classes.map((cls, i) => {
+          const classMembers = grouped[cls];
+          const color = classColor(cls);
+          const history = CLASS_HISTORY.find(h => h.class_name === cls);
+          return (
+            <div key={cls} style={{position:"relative",paddingLeft:28,marginBottom:0}}>
+              {i < classes.length-1 && <div style={{position:"absolute",left:10,top:32,bottom:-1,width:1.5,background:`linear-gradient(180deg,${color}66,${color}11)`}}/>}
+              <div style={{position:"absolute",left:4,top:22,width:13,height:13,borderRadius:"50%",background:color,border:"2px solid #06060f",boxShadow:`0 0 10px ${color}66`}}/>
+              <div style={{paddingTop:16,paddingBottom:8}}>
+                <div style={{display:"flex",alignItems:"baseline",gap:10}}>
+                  <span style={{fontFamily:"'Playfair Display',serif",fontSize:17,color:"#f0f0f0",fontWeight:700}}>{cls}</span>
+                  <span style={{fontSize:11,color:color,fontWeight:500}}>{classMembers[0]?.semester}</span>
+                  <span style={{fontSize:11,color:"#333",marginLeft:"auto"}}>{classMembers.length} member{classMembers.length>1?"s":""}</span>
+                </div>
+                {history && (history.nmd || history.nme || history.president) && (
+                  <div style={{display:"flex",gap:16,marginTop:5,flexWrap:"wrap"}}>
+                    {history.nmd && <div style={{fontSize:11}}><span style={{color:"#333",fontSize:9,textTransform:"uppercase",letterSpacing:.5}}>NMD · </span><span style={{color:"#c0392b"}}>{history.nmd}</span></div>}
+                    {history.nme && <div style={{fontSize:11}}><span style={{color:"#333",fontSize:9,textTransform:"uppercase",letterSpacing:.5}}>NME · </span><span style={{color:"#0ea5e9"}}>{history.nme}</span></div>}
+                    {history.president && <div style={{fontSize:11}}><span style={{color:"#333",fontSize:9,textTransform:"uppercase",letterSpacing:.5}}>President · </span><span style={{color:"#10b981"}}>{history.president}</span></div>}
+                  </div>
+                )}
+              </div>
+              <div style={{display:"flex",flexWrap:"wrap",gap:8,paddingBottom:20}}>
+                {classMembers.map(m => {
+                  const c = nodeC(m);
+                  const isSel = selM?.id === m.id;
+                  const big = m.bigId ? (byId[m.bigId] || members.find(x=>x.id===m.bigId)) : null;
+                  return (
+                    <div key={m.id} onClick={()=>setSelM(isSel?null:m)}
+                      style={{background:isSel?c+"22":"#0e0e1a",border:`1px solid ${isSel?c:"#1e1e2e"}`,borderRadius:10,padding:"9px 13px",cursor:"pointer",transition:"all .15s",minWidth:150,position:"relative",overflow:"hidden"}}>
+                      <div style={{position:"absolute",left:0,top:0,bottom:0,width:3,background:c,borderRadius:"10px 0 0 10px"}}/>
+                      <div style={{paddingLeft:6}}>
+                        <div style={{fontSize:13,fontWeight:500,color:"#f0f0f0",lineHeight:1.3}}>{m.name}</div>
+                        {m.nickname && <div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:1}}>"{m.nickname}"</div>}
+                        {big && <div style={{fontSize:10,color:"#444",marginTop:3}}>↑ {big.name}</div>}
+                        {m.dynasty && <div style={{fontSize:10,color:DYNASTY_COLORS[m.dynasty]||"#555",marginTop:1}}>{m.dynasty}</div>}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {selM && classMembers.find(m=>m.id===selM.id) && (
+                <div style={{background:"#0e0e1a",border:`1px solid ${nodeC(selM)}44`,borderRadius:12,padding:14,marginBottom:16}}>
+                  <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start"}}>
+                    <div>
+                      <div style={{fontSize:14,fontWeight:600,color:"#f0f0f0"}}>{selM.name}</div>
+                      {selM.nickname && <div style={{fontSize:12,color:nodeC(selM),fontStyle:"italic"}}>"{selM.nickname}"</div>}
+                    </div>
+                    <button onClick={()=>setSelM(null)} style={{background:"none",border:"none",color:"#444",cursor:"pointer",fontSize:18}}>×</button>
+                  </div>
+                  {byId[selM.id]?.children?.length > 0 && (
+                    <div style={{marginTop:8}}>
+                      <div style={{fontSize:10,color:"#333",textTransform:"uppercase",letterSpacing:.5,marginBottom:4}}>Littles</div>
+                      <div style={{display:"flex",flexWrap:"wrap",gap:6}}>
+                        {byId[selM.id].children.map(c=>(
+                          <span key={c.id} style={{fontSize:11,color:nodeC(c),background:nodeC(c)+"15",padding:"2px 8px",borderRadius:20}}>
+                            {c.name}{c.nickname?` · ${c.nickname}`:""}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
+
   return (
     <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:"#06060f"}}>
       <div style={{maxWidth:780,margin:"0 auto"}}>
@@ -687,6 +772,7 @@ export default function App() {
 
       {/* Class History View */}
       {activeTab==="history" && <ClassHistoryView/>}
+      {activeTab==="byclass" && <ClassByView members={members} byId={byId}/>}
 
       {/* Detail panel */}
       {activeTab==="tree"&&selM&&panel!=="add"&&(
