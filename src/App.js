@@ -193,7 +193,7 @@ const ASR_MEMBERS = [
   {id:"146",name:"Cecilia Ko",nickname:"Vogue",class_name:"Phi",semester:"Spring 2013",bigId:"120",dynasty:"Luna",lineNumber:3,delettered:false},
   {id:"147",name:"Amy Nguyen",nickname:"Effervescence",class_name:"Phi",semester:"Spring 2013",bigId:"137",dynasty:"Luna",lineNumber:4,delettered:false},
   {id:"148",name:"Phuong Thao Nguyen",nickname:"Devier",class_name:"Phi",semester:"Spring 2013",bigId:"132",dynasty:null,lineNumber:5,delettered:true},
-  {id:"149",name:"Esther Shim",nickname:"Forte",class_name:"Phi",semester:"Spring 2013",bigId:"122",dynasty:"Moxie",lineNumber:6,delettered:false},
+  {id:"149",name:"Esther Shim",nickname:"Forté",class_name:"Phi",semester:"Spring 2013",bigId:"122",dynasty:"Moxie",lineNumber:6,delettered:false},
   {id:"150",name:"Jasmine Ewe",nickname:"S.T.U.D.",class_name:"Chi",semester:"Fall 2013",bigId:"138",dynasty:"Lola",lineNumber:1,delettered:false},
   {id:"151",name:"Rita Han",nickname:"Infinity",class_name:"Chi",semester:"Fall 2013",bigId:"125",dynasty:"Hall",lineNumber:2,delettered:false},
   {id:"152",name:"Mirabel Jin",nickname:"Neptune",class_name:"Chi",semester:"Fall 2013",bigId:"123",dynasty:"Snuggle Bear",lineNumber:3,delettered:false},
@@ -212,7 +212,7 @@ const ASR_MEMBERS = [
   {id:"165",name:"Zhenni Ren",nickname:"Ausrine",class_name:"Alpha Alpha",semester:"Fall 2014",bigId:"152",dynasty:"Snuggle Bear",lineNumber:3,delettered:false},
   {id:"166",name:"Haemin Song",nickname:"Deluxe",class_name:"Alpha Alpha",semester:"Fall 2014",bigId:"157",dynasty:"Pasithea",lineNumber:4,delettered:true},
   {id:"167",name:"Teresa Tran",nickname:"Marvel",class_name:"Alpha Alpha",semester:"Fall 2014",bigId:"147",dynasty:"Luna",lineNumber:5,delettered:false},
-  {id:"168",name:"Dianna Wong",nickname:"Expose",class_name:"Alpha Alpha",semester:"Fall 2014",bigId:"159",dynasty:"Moxie",lineNumber:6,delettered:false},
+  {id:"168",name:"Dianna Wong",nickname:"Exposé",class_name:"Alpha Alpha",semester:"Fall 2014",bigId:"159",dynasty:"Moxie",lineNumber:6,delettered:false},
   {id:"169",name:"Ivy Hu",nickname:"Pearle",class_name:"Alpha Beta",semester:"Fall 2015",bigId:"161",dynasty:"Pasithea",lineNumber:1,delettered:false},
   {id:"170",name:"Rachel Xu",nickname:"Seirios",class_name:"Alpha Beta",semester:"Fall 2015",bigId:"165",dynasty:"Snuggle Bear",lineNumber:2,delettered:false},
   {id:"171",name:"Samantha Badeau",nickname:"Crusade",class_name:"Alpha Gamma",semester:"Fall 2016",bigId:"145",dynasty:null,lineNumber:1,delettered:true},
@@ -224,14 +224,14 @@ const ASR_MEMBERS = [
   {id:"177",name:"Kelsey Kim",nickname:"Vega",class_name:"Alpha Epsilon",semester:"Fall 2017",bigId:"174",dynasty:"Pasithea",lineNumber:2,delettered:false},
   {id:"178",name:"Tiffany Chan",nickname:"Jade",class_name:"Alpha Zeta",semester:"Spring 2018",bigId:"167",dynasty:"Luna",lineNumber:1,delettered:false},
   {id:"179",name:"Valerie Lin",nickname:"Cordelia",class_name:"Alpha Zeta",semester:"Spring 2018",bigId:"164",dynasty:"Lola",lineNumber:2,delettered:false},
-  {id:"180",name:"Leslie Tran",nickname:"Arinne",class_name:"Alpha Zeta",semester:"Spring 2018",bigId:"168",dynasty:"Moxie",lineNumber:3,delettered:false},
+  {id:"180",name:"Leslie Tran",nickname:"Arinné",class_name:"Alpha Zeta",semester:"Spring 2018",bigId:"168",dynasty:"Moxie",lineNumber:3,delettered:false},
   {id:"181",name:"Ava Wei",nickname:"Elektra",class_name:"Alpha Zeta",semester:"Spring 2018",bigId:"167",dynasty:"Luna",lineNumber:4,delettered:false},
   {id:"182",name:"Gina Zheng",nickname:"Leilani",class_name:"Alpha Zeta",semester:"Spring 2018",bigId:"164",dynasty:"Lola",lineNumber:5,delettered:false},
   {id:"183",name:"Linda Folger",nickname:"Ilaria",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"172",dynasty:"Hall",lineNumber:1,delettered:false},
   {id:"184",name:"Reina Garrett",nickname:"Stella",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"177",dynasty:"Pasithea",lineNumber:2,delettered:false},
-  {id:"185",name:"Anna Huang",nickname:"Lutea",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"180",dynasty:"Moxie",lineNumber:3,delettered:false},
-  {id:"186",name:"Jenny Nguyen",nickname:"Anjeze",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"180",dynasty:"Moxie",lineNumber:4,delettered:false},
-  {id:"187",name:"Thao Nguyen2",nickname:"Pleiades",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"170",dynasty:"Snuggle Bear",lineNumber:5,delettered:false},
+  {id:"185",name:"Anna Huang",nickname:"Lutéa",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"180",dynasty:"Moxie",lineNumber:3,delettered:false},
+  {id:"186",name:"Jenny Nguyen",nickname:"Anjezé",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"180",dynasty:"Moxie",lineNumber:4,delettered:false},
+  {id:"187",name:"Thao Nguyen",nickname:"Pleiades",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"170",dynasty:"Snuggle Bear",lineNumber:5,delettered:false},
   {id:"188",name:"Lucy Xiao",nickname:"Hesperus",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"175",dynasty:null,lineNumber:6,delettered:false},
   {id:"189",name:"Vicky Zhang",nickname:"B612",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"170",dynasty:"Snuggle Bear",lineNumber:7,delettered:false},
   {id:"190",name:"Hanna Zheng",nickname:"Hestia",class_name:"Alpha Eta",semester:"Fall 2018",bigId:"169",dynasty:"Pasithea",lineNumber:8,delettered:false},
@@ -247,10 +247,10 @@ const ASR_MEMBERS = [
   {id:"200",name:"Silvy Park",nickname:"Mira",class_name:"Alpha Iota",semester:"Fall 2019",bigId:"179",dynasty:"Lola",lineNumber:7,delettered:false},
   {id:"201",name:"Danny Wang",nickname:"Alcina",class_name:"Alpha Iota",semester:"Fall 2019",bigId:"181",dynasty:"Luna",lineNumber:8,delettered:false},
   {id:"202",name:"Anna Zheng",nickname:"Aureole",class_name:"Alpha Iota",semester:"Fall 2019",bigId:"182",dynasty:"Lola",lineNumber:9,delettered:false},
-  {id:"203",name:"Michelle Zheng",nickname:"Vetra",class_name:"Alpha Iota",semester:"Fall 2019",bigId:"185",dynasty:"Moxie",lineNumber:10,delettered:false},
+  {id:"203",name:"Michelle Zheng",nickname:"Vētra",class_name:"Alpha Iota",semester:"Fall 2019",bigId:"185",dynasty:"Moxie",lineNumber:10,delettered:false},
   {id:"204",name:"Michelle Zhu",nickname:"Citrine",class_name:"Alpha Iota",semester:"Fall 2019",bigId:"178",dynasty:"Luna",lineNumber:11,delettered:false},
   {id:"205",name:"Katelyn Choe",nickname:"Avina",class_name:"Alpha Kappa",semester:"Spring 2020",bigId:"183",dynasty:"Hall",lineNumber:1,delettered:false},
-  {id:"206",name:"Kristen Steinmetz",nickname:"Eira",class_name:"Alpha Kappa",semester:"Spring 2020",bigId:"186",dynasty:"Moxie",lineNumber:2,delettered:true},
+  {id:"206",name:"Kristen Steinmetz",nickname:"Éira",class_name:"Alpha Kappa",semester:"Spring 2020",bigId:"186",dynasty:"Moxie",lineNumber:2,delettered:true},
   {id:"207",name:"Jennifer Zhu",nickname:"Peony",class_name:"Alpha Kappa",semester:"Spring 2020",bigId:"189",dynasty:"Snuggle Bear",lineNumber:3,delettered:false},
   {id:"208",name:"Jamie Lee",nickname:"Elora",class_name:"Alpha Lambda",semester:"Spring 2021",bigId:"194",dynasty:"Pasithea",lineNumber:1,delettered:false},
   {id:"209",name:"Elyssa Levitt",nickname:"Zoria",class_name:"Alpha Lambda",semester:"Spring 2021",bigId:"192",dynasty:"Hall",lineNumber:2,delettered:false},
@@ -262,7 +262,7 @@ const ASR_MEMBERS = [
   {id:"215",name:"Grace Jang",nickname:"Alamea",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"196",dynasty:"Pasithea",lineNumber:4,delettered:false},
   {id:"216",name:"Eujin Kang",nickname:"Rosella",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"198",dynasty:"Lola",lineNumber:5,delettered:false},
   {id:"217",name:"Jocelyn Kosasi",nickname:"Lilia",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"199",dynasty:"Pasithea",lineNumber:6,delettered:false},
-  {id:"218",name:"Alex Le",nickname:"Kalea",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"203",dynasty:"Moxie",lineNumber:7,delettered:false},
+  {id:"218",name:"Alex Le",nickname:"Kalëa",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"203",dynasty:"Moxie",lineNumber:7,delettered:false},
   {id:"219",name:"Jennifer Mai",nickname:"Ayla",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"208",dynasty:"Pasithea",lineNumber:8,delettered:false},
   {id:"220",name:"An Nguyen",nickname:"Auzlyn",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"191",dynasty:"Hall",lineNumber:9,delettered:false},
   {id:"221",name:"Muriel Ren",nickname:"Nepheline",class_name:"Alpha Mu",semester:"Fall 2021",bigId:"204",dynasty:"Luna",lineNumber:10,delettered:false},
@@ -273,7 +273,7 @@ const ASR_MEMBERS = [
   {id:"226",name:"Sarah Han",nickname:"Ciela",class_name:"Alpha Nu",semester:"Spring 2022",bigId:"202",dynasty:"Lola",lineNumber:2,delettered:false},
   {id:"227",name:"Jolie Lanier",nickname:"Achara",class_name:"Alpha Nu",semester:"Spring 2022",bigId:"209",dynasty:"Hall",lineNumber:3,delettered:false},
   {id:"228",name:"Jordan Sul",nickname:"Caelus",class_name:"Alpha Nu",semester:"Spring 2022",bigId:"202",dynasty:"Lola",lineNumber:4,delettered:false},
-  {id:"229",name:"Rebekah Yohler",nickname:"Eirene",class_name:"Alpha Nu",semester:"Spring 2022",bigId:"186",dynasty:"Moxie",lineNumber:5,delettered:false},
+  {id:"229",name:"Rebekah Yohler",nickname:"Eirené",class_name:"Alpha Nu",semester:"Spring 2022",bigId:"186",dynasty:"Moxie",lineNumber:5,delettered:false},
   {id:"230",name:"Grace Conn",nickname:"Leta",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"224",dynasty:"Snuggle Bear",lineNumber:1,delettered:false},
   {id:"231",name:"Emily Freeman",nickname:"Ainakea",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"215",dynasty:"Pasithea",lineNumber:2,delettered:false},
   {id:"232",name:"Angie Lin",nickname:"Iress",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"201",dynasty:"Luna",lineNumber:3,delettered:false},
@@ -281,9 +281,9 @@ const ASR_MEMBERS = [
   {id:"234",name:"Thaomy Pham",nickname:"Aruvi",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"214",dynasty:"Lola",lineNumber:5,delettered:false},
   {id:"235",name:"Lexi Putman",nickname:"Luscinia",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"216",dynasty:"Lola",lineNumber:6,delettered:false},
   {id:"236",name:"Kati Putman",nickname:"Kiana",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"217",dynasty:"Pasithea",lineNumber:7,delettered:false},
-  {id:"237",name:"Malia Tamisin",nickname:"Lucrecia",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"218",dynasty:"Moxie",lineNumber:8,delettered:false},
+  {id:"237",name:"Malia Tamisin",nickname:"Lucrécia",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"218",dynasty:"Moxie",lineNumber:8,delettered:false},
   {id:"238",name:"Vanessa Thakkar",nickname:"Kun Ana",class_name:"Alpha Xi",semester:"Fall 2022",bigId:"212",dynasty:"Snuggle Bear",lineNumber:9,delettered:false},
-  {id:"239",name:"Vina Bui",nickname:"KOMODO",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"227",dynasty:"Hall",lineNumber:1,delettered:false},
+  {id:"239",name:"Vina Bui",nickname:"KOMÔDO",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"227",dynasty:"Hall",lineNumber:1,delettered:false},
   {id:"240",name:"Sonika Chan",nickname:"Nivalis",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"205",dynasty:"Hall",lineNumber:2,delettered:false},
   {id:"241",name:"Katie Dao",nickname:"Khione",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"228",dynasty:"Lola",lineNumber:3,delettered:false},
   {id:"242",name:"Zoie Daughtry",nickname:"Erytheia",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"228",dynasty:"Lola",lineNumber:4,delettered:false},
@@ -293,12 +293,12 @@ const ASR_MEMBERS = [
   {id:"246",name:"Selina Li",nickname:"Aumia",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"219",dynasty:"Pasithea",lineNumber:8,delettered:false},
   {id:"247",name:"Nitya Neema",nickname:"Arcelia",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"226",dynasty:"Lola",lineNumber:9,delettered:false},
   {id:"248",name:"Aashna Patel",nickname:"Avani",class_name:"Alpha Omicron",semester:"Spring 2023",bigId:"220",dynasty:"Hall",lineNumber:10,delettered:false},
-  {id:"249",name:"Sophia Cheng",nickname:"Lien",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"234",dynasty:"Lola",lineNumber:1,delettered:false},
+  {id:"249",name:"Sophia Cheng",nickname:"Liên",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"234",dynasty:"Lola",lineNumber:1,delettered:false},
   {id:"250",name:"Simone Cho",nickname:"Nalani",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"236",dynasty:"Pasithea",lineNumber:2,delettered:false},
   {id:"251",name:"Samantha Ferrer-Smallwood",nickname:"Esmeralda",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"233",dynasty:"Luna",lineNumber:3,delettered:false},
   {id:"252",name:"Saahithya Gutta",nickname:"Evryn",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"230",dynasty:"Snuggle Bear",lineNumber:4,delettered:false},
-  {id:"253",name:"Lana Jalayer",nickname:"Odessa",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"229",dynasty:"Moxie",lineNumber:5,delettered:false},
-  {id:"254",name:"Tina Ngo",nickname:"Kamea",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"237",dynasty:"Moxie",lineNumber:6,delettered:false},
+  {id:"253",name:"Lana Jalayer",nickname:"Odēssa",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"229",dynasty:"Moxie",lineNumber:5,delettered:false},
+  {id:"254",name:"Tina Ngo",nickname:"Kamėa",class_name:"Alpha Pi",semester:"Fall 2023",bigId:"237",dynasty:"Moxie",lineNumber:6,delettered:false},
   {id:"255",name:"Anupama Arvind",nickname:"Saranyu",class_name:"Alpha Rho",semester:"Spring 2024",bigId:"242",dynasty:"Lola",lineNumber:1,delettered:true},
   {id:"256",name:"Leslie Dang",nickname:"Supernova",class_name:"Alpha Rho",semester:"Spring 2024",bigId:"248",dynasty:"Hall",lineNumber:2,delettered:false},
   {id:"257",name:"Lena Dinh",nickname:"Mairen",class_name:"Alpha Rho",semester:"Spring 2024",bigId:"239",dynasty:"Hall",lineNumber:3,delettered:false},
@@ -311,7 +311,7 @@ const ASR_MEMBERS = [
   {id:"264",name:"Emily Shin",nickname:"Aethra",class_name:"Alpha Rho",semester:"Spring 2024",bigId:"247",dynasty:"Lola",lineNumber:10,delettered:false},
   {id:"265",name:"Emma Berney",nickname:"Syntheia",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"246",dynasty:"Pasithea",lineNumber:1,delettered:false},
   {id:"266",name:"Lilian Fitch",nickname:"Yuena",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"249",dynasty:"Lola",lineNumber:2,delettered:false},
-  {id:"267",name:"Jessica Ngo",nickname:"Celaria",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"245",dynasty:"Snuggle Bear",lineNumber:3,delettered:false},
+  {id:"267",name:"Jessica Ngo",nickname:"Celaría",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"245",dynasty:"Snuggle Bear",lineNumber:3,delettered:false},
   {id:"268",name:"Cammie Phansavanh",nickname:"Kalista",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"250",dynasty:"Pasithea",lineNumber:4,delettered:false},
   {id:"269",name:"Annie Shi",nickname:"Akoya",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"251",dynasty:"Luna",lineNumber:5,delettered:false},
   {id:"270",name:"Saachi Singh",nickname:"Shani",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"238",dynasty:"Snuggle Bear",lineNumber:6,delettered:false},
@@ -319,8 +319,8 @@ const ASR_MEMBERS = [
   {id:"272",name:"Syruis Zhang",nickname:"Ilyana",class_name:"Alpha Sigma",semester:"Fall 2024",bigId:"232",dynasty:"Luna",lineNumber:8,delettered:false},
   {id:"273",name:"Chloe Andayan",nickname:"Callisea",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"256",dynasty:"Hall",lineNumber:1,delettered:false},
   {id:"274",name:"Eryna Furuta",nickname:"Saerilyn",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"262",dynasty:"Lola",lineNumber:2,delettered:false},
-  {id:"275",name:"Anishka Manavalan",nickname:"Arezou",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"253",dynasty:"Moxie",lineNumber:3,delettered:false},
-  {id:"276",name:"Jocelyn Pham",nickname:"Emilia",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"254",dynasty:"Moxie",lineNumber:4,delettered:false},
+  {id:"275",name:"Anishka Manavalan",nickname:"Arêzou",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"253",dynasty:"Moxie",lineNumber:3,delettered:false},
+  {id:"276",name:"Jocelyn Pham",nickname:"Émilia",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"254",dynasty:"Moxie",lineNumber:4,delettered:false},
   {id:"277",name:"Rose Pollard",nickname:"Iridessa",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"255",dynasty:"Lola",lineNumber:5,delettered:false},
   {id:"278",name:"Laeh Ramsey",nickname:"Lunessa",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"264",dynasty:"Lola",lineNumber:6,delettered:false},
   {id:"279",name:"Tiffany Vinh",nickname:"Janarã",class_name:"Alpha Tau",semester:"Spring 2025",bigId:"260",dynasty:"Lola",lineNumber:7,delettered:false},
@@ -341,12 +341,12 @@ const ASR_MEMBERS = [
   {id:"294",name:"Emi Arlong",nickname:"Nytheria",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"279",dynasty:"Lola",lineNumber:2,delettered:false},
   {id:"295",name:"Bhuvanthi Chapalamadugu",nickname:"Twyla",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"277",dynasty:"Lola",lineNumber:3,delettered:false},
   {id:"296",name:"Kayleigh Fong",nickname:"Adelyne",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"274",dynasty:"Lola",lineNumber:4,delettered:false},
-  {id:"297",name:"Arushi Mishra",nickname:"Lynnea",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"280",dynasty:"Snuggle Bear",lineNumber:5,delettered:false},
+  {id:"297",name:"Arushi Mishra",nickname:"Lynnéa",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"280",dynasty:"Snuggle Bear",lineNumber:5,delettered:false},
   {id:"298",name:"Hilda Ngo",nickname:"Meilani",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"257",dynasty:"Hall",lineNumber:6,delettered:false},
-  {id:"299",name:"Gretchen O'Neal",nickname:"Eellaya",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"275",dynasty:"Moxie",lineNumber:7,delettered:false},
+  {id:"299",name:"Gretchen O'Neal",nickname:"Eêllaya",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"275",dynasty:"Moxie",lineNumber:7,delettered:false},
   {id:"300",name:"Jaeyun Sim",nickname:"Erivela",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"265",dynasty:"Pasithea",lineNumber:8,delettered:false},
-  {id:"301",name:"Marie Torres",nickname:"Milena",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie",lineNumber:9,delettered:false},
-  {id:"302",name:"Alexis Vu",nickname:"Reira",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie",lineNumber:10,delettered:false},
+  {id:"301",name:"Marie Torres",nickname:"Miléna",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie",lineNumber:9,delettered:false},
+  {id:"302",name:"Alexis Vu",nickname:"Rėira",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"276",dynasty:"Moxie",lineNumber:10,delettered:false},
   {id:"303",name:"Phoebe Warren",nickname:"Lunavie",class_name:"Alpha Phi",semester:"Spring 2026",bigId:"273",dynasty:"Hall",lineNumber:11,delettered:false},
 ];
 
@@ -454,6 +454,8 @@ function AdminDashboard({currentUser,onClose}){
 
 // ─── By Class Tab ─────────────────────────────────────────────────────────────
 function ByClassTab({members,byId,onPickMember}){
+  const [expanded,setExpanded]=useState({});
+  const toggleExpand=id=>setExpanded(e=>({...e,[id]:!e[id]}));
   const byClass={};CLASS_ORDER.forEach(c=>{byClass[c]=[];});
   members.forEach(m=>{if(byClass[m.class_name])byClass[m.class_name].push(m);});
   const nodeC=m=>m.dynasty&&DYNASTY_COLORS[m.dynasty]?DYNASTY_COLORS[m.dynasty]:classColor(m.class_name);
@@ -486,22 +488,26 @@ function ByClassTab({members,byId,onPickMember}){
                 const littles=(byId[m.id]?.children||[]);
                 const lineNum=getLineNum(m);
                 return(
-                  <div key={m.id} onClick={()=>onPickMember(m)}
+                  <div key={m.id}
                     style={{background:"#0c0c1c",border:`1px solid ${c}22`,borderRadius:12,padding:"10px 14px",cursor:"pointer",minWidth:160,maxWidth:220,flex:"1 1 160px",transition:"all .15s",borderLeft:`3px solid ${c}`,position:"relative"}}
                     onMouseEnter={e=>e.currentTarget.style.background="#101028"}
-                    onMouseLeave={e=>e.currentTarget.style.background="#0c0c1c"}>
+                    onMouseLeave={e=>e.currentTarget.style.background="#0c0c1c"}
+                    onClick={()=>toggleExpand(m.id)}>
                     <div style={{position:"absolute",top:8,right:10,fontSize:9,color:"#2a2a3a",fontWeight:600}}>#{lineNum}</div>
                     <div style={{fontSize:12,fontWeight:600,color:m.delettered?"#333":"#f0f0f0",paddingRight:24,lineHeight:1.3,fontStyle:m.delettered?"italic":"normal"}}>{m.delettered?"Former Member":m.name}</div>
                     {!m.delettered&&m.nickname&&<div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:2}}>{m.nickname}</div>}
                     {!m.delettered&&m.dynasty&&<div style={{fontSize:9,color:c,opacity:.6,marginTop:2,textTransform:"uppercase",letterSpacing:.5}}>{m.dynasty}</div>}
-                    {big&&<div style={{marginTop:7,paddingTop:7,borderTop:"1px solid #0f0f1f"}}>
-                      <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Big</div>
-                      <div style={{fontSize:11,color:"#555"}}>{big.name}{big.nickname&&<span style={{color:nodeC(big),marginLeft:4,fontStyle:"italic"}}>· {big.nickname}</span>}</div>
-                    </div>}
-                    {littles.length>0&&<div style={{marginTop:6}}>
-                      <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Littles</div>
-                      <div style={{fontSize:11,color:"#555"}}>{littles.map(l=>l.nickname||l.name.split(" ")[0]).join(", ")}</div>
-                    </div>}
+                    {expanded[m.id]&&(<>
+                      {big&&<div style={{marginTop:7,paddingTop:7,borderTop:"1px solid #0f0f1f"}} onClick={e=>{e.stopPropagation();onPickMember(big);}}>
+                        <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Big</div>
+                        <div style={{fontSize:11,color:"#666"}}>{big.delettered?"Former Member":big.name}{!big.delettered&&big.nickname&&<span style={{color:nodeC(big),marginLeft:4,fontStyle:"italic"}}>· {big.nickname}</span>}</div>
+                      </div>}
+                      {littles.length>0&&<div style={{marginTop:6}} onClick={e=>e.stopPropagation()}>
+                        <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Littles</div>
+                        {littles.map(l=><div key={l.id} style={{fontSize:11,color:"#666",cursor:"pointer"}} onClick={e=>{e.stopPropagation();onPickMember(l);}}>{l.delettered?"Former Member":l.name}{!l.delettered&&l.nickname&&<span style={{color:nodeC(l),marginLeft:4,fontStyle:"italic"}}>· {l.nickname}</span>}</div>)}
+                      </div>}
+                      {!big&&littles.length===0&&<div style={{marginTop:7,fontSize:11,color:"#333",fontStyle:"italic"}}>No big or littles</div>}
+                    </>)}
                   </div>
                 );
               })}
