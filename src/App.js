@@ -705,8 +705,8 @@ export default function App(){
       )}
 
       {/* Dynasty legend — tree only */}
-      {activeTab==="tree"&&colorMode==="dynasty"&&(
-        <div style={{position:"absolute",bottom:24,left:20,zIndex:9,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:10,padding:"10px 14px",pointerEvents:"none"}}>
+      {(activeTab==="tree"||activeTab==="byclass")&&(
+        <div style={{position:"fixed",bottom:24,left:20,zIndex:9,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:10,padding:"10px 14px",pointerEvents:"none"}}>
           <div style={{fontSize:9,color:"#333",textTransform:"uppercase",letterSpacing:1,marginBottom:6}}>Dynasties</div>
           {DYNASTIES.map(d=>(<div key={d} style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}><div style={{width:8,height:8,borderRadius:"50%",background:DYNASTY_COLORS[d]}}/><span style={{fontSize:11,color:"#777"}}>{d}</span></div>))}
         </div>
