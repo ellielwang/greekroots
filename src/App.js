@@ -491,8 +491,7 @@ function ByClassTab({members,byId,onPickMember}){
                     onMouseEnter={e=>e.currentTarget.style.background="#101028"}
                     onMouseLeave={e=>e.currentTarget.style.background="#0c0c1c"}>
                     <div style={{position:"absolute",top:8,right:10,fontSize:9,color:"#2a2a3a",fontWeight:600}}>#{lineNum}</div>
-                    <div style={{fontSize:12,fontWeight:600,color:m.delettered?"#444":"#f0f0f0",paddingRight:24,lineHeight:1.3,textDecoration:m.delettered?"line-through":"none"}}>{m.name}</div>
-                    {m.delettered&&<div style={{fontSize:10,color:"#555",fontStyle:"italic",marginTop:2}}>Former Member</div>}
+                    <div style={{fontSize:12,fontWeight:600,color:m.delettered?"#333":"#f0f0f0",paddingRight:24,lineHeight:1.3,fontStyle:m.delettered?"italic":"normal"}}>{m.delettered?"Former Member":m.name}</div>
                     {!m.delettered&&m.nickname&&<div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:2}}>{m.nickname}</div>}
                     {!m.delettered&&m.dynasty&&<div style={{fontSize:9,color:c,opacity:.6,marginTop:2,textTransform:"uppercase",letterSpacing:.5}}>{m.dynasty}</div>}
                     {big&&<div style={{marginTop:7,paddingTop:7,borderTop:"1px solid #0f0f1f"}}>
@@ -706,10 +705,9 @@ export default function App(){
                   {isNew&&<rect x={-3} y={-3} width={NODE_W+6} height={NODE_H+6} rx={13} fill="none" stroke={c} strokeWidth={1.5} strokeDasharray="4 3" opacity={.7}/>}
                   <rect x={0} y={0} width={NODE_W} height={NODE_H} rx={10} fill={`url(#g${m.id})`} stroke={isSel||isHL?c:"#1c1c30"} strokeWidth={isSel||isHL?1.5:.7}/>
                   <rect x={0} y={0} width={4} height={NODE_H} rx={4} fill={c} opacity={.9}/>
-                  <text x={13} y={20} fill={m.delettered?"#444":"#f0f0f0"} fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif" textDecoration={m.delettered?"line-through":"none"}>{m.name.length>18?m.name.slice(0,17)+"…":m.name}</text>
-                  {m.delettered&&<text x={13} y={33} fill="#555" fontSize={9} fontFamily="'DM Sans',sans-serif" fontStyle="italic">Former Member</text>}
+                  <text x={13} y={20} fill={m.delettered?"#333":"#f0f0f0"} fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif" fontStyle={m.delettered?"italic":"normal"}>{m.delettered?"Former Member":(m.name.length>18?m.name.slice(0,17)+"…":m.name)}</text>
                   {!m.delettered&&m.nickname&&<text x={13} y={33} fill={c} fontSize={10.5} fontFamily="'DM Sans',sans-serif" opacity={.95}>{m.nickname.length>20?m.nickname.slice(0,19)+"…":m.nickname}</text>}
-                  <text x={13} y={m.delettered?46:(m.nickname?46:37)} fill="#444" fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
+                  <text x={13} y={m.delettered?35:(m.nickname?46:37)} fill="#333" fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
                   {(()=>{const ln=m.id.startsWith('FM')?Number(m.id.replace('FM','')):(!isNaN(Number(m.id))?Number(m.id):null);return ln?<text x={NODE_W-8} y={20} fill="#333" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">#{ln}</text>:null;})()}
                   {littles>0&&<text x={NODE_W-8} y={58} fill="#444" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">{littles}↓</text>}
                 </g>
