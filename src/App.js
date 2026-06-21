@@ -461,60 +461,84 @@ function ByClassTab({members,byId,onPickMember}){
   const nodeC=m=>m.dynasty&&DYNASTY_COLORS[m.dynasty]?DYNASTY_COLORS[m.dynasty]:classColor(m.class_name);
   const getLineNum=m=>m.id.startsWith('FM')?Number(m.id.replace('FM','')):(!isNaN(Number(m.id))?Number(m.id):null);
   return(
-    <div style={{padding:"80px 32px 60px",overflowY:"auto",height:"100vh",boxSizing:"border-box",background:"#06060f"}}>
-      {CLASS_ORDER.filter(c=>byClass[c].length>0).map(cn=>{
-        const ch=CLASS_HISTORY.find(h=>h.class_name===cn);
-        const sem=byClass[cn][0]?.semester;
-        return(
-          <div key={cn} style={{marginBottom:48}}>
-            <div style={{marginBottom:14,paddingBottom:12,borderBottom:"1px solid #0f0f1f"}}>
-              <div style={{display:"flex",alignItems:"baseline",gap:12,marginBottom:8}}>
-                <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:"#f5f5f5"}}>{cn}</div>
-                <div style={{fontSize:12,color:"#333"}}>{sem}</div>
-                <div style={{fontSize:11,color:"#2a2a3a",marginLeft:"auto"}}>{byClass[cn].length} members</div>
-              </div>
-              {(ch?.nmd||ch?.nme||ch?.president)&&(
-                <div style={{display:"flex",gap:20,flexWrap:"wrap"}}>
-                  {ch?.nmd&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#f43f5e",textTransform:"uppercase",letterSpacing:.8,fontWeight:600}}>NMD</span><span style={{fontSize:12,color:"#c0687a"}}>{ch.nmd}</span></div>}
-                  {ch?.nme&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#0ea5e9",textTransform:"uppercase",letterSpacing:.8,fontWeight:600}}>NME</span><span style={{fontSize:12,color:"#4a9fc0"}}>{ch.nme}</span></div>}
-                  {ch?.president&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#10b981",textTransform:"uppercase",letterSpacing:.8,fontWeight:600}}>President</span><span style={{fontSize:12,color:"#4ab891"}}>{ch.president}</span></div>}
+    <div style={{padding:"100px 0 80px",overflowY:"auto",height:"100vh",boxSizing:"border-box",background:"#06060f"}}>
+      <div style={{maxWidth:760,margin:"0 auto",padding:"0 40px"}}>
+        {CLASS_ORDER.filter(c=>byClass[c].length>0).map(cn=>{
+          const ch=CLASS_HISTORY.find(h=>h.class_name===cn);
+          const sem=byClass[cn][0]?.semester;
+          return(
+            <div key={cn} style={{marginBottom:72}}>
+              {/* Class header */}
+              <div style={{marginBottom:20}}>
+                <div style={{display:"flex",alignItems:"baseline",gap:12,marginBottom:6}}>
+                  <div style={{fontFamily:"'Playfair Display',serif",fontSize:28,color:"#f5f5f5",fontWeight:700}}>{cn}</div>
+                  <div style={{fontSize:12,color:"#2a2a3a",letterSpacing:.5}}>{sem}</div>
                 </div>
-              )}
-            </div>
-            <div style={{display:"flex",flexWrap:"wrap",gap:10}}>
-              {byClass[cn].map(m=>{
-                const c=nodeC(m);
-                const big=m.bigId?byId[m.bigId]:null;
-                const littles=(byId[m.id]?.children||[]);
-                const lineNum=getLineNum(m);
-                return(
-                  <div key={m.id}
-                    style={{background:"#0c0c1c",border:`1px solid ${c}22`,borderRadius:12,padding:"10px 14px",cursor:"pointer",minWidth:160,maxWidth:220,flex:"1 1 160px",transition:"all .15s",borderLeft:`3px solid ${c}`,position:"relative"}}
-                    onMouseEnter={e=>e.currentTarget.style.background="#101028"}
-                    onMouseLeave={e=>e.currentTarget.style.background="#0c0c1c"}
-                    onClick={()=>toggleExpand(m.id)}>
-                    <div style={{position:"absolute",top:8,right:10,fontSize:9,color:"#2a2a3a",fontWeight:600}}>#{lineNum}</div>
-                    <div style={{fontSize:12,fontWeight:600,color:m.delettered?"#333":"#f0f0f0",paddingRight:24,lineHeight:1.3,fontStyle:m.delettered?"italic":"normal"}}>{m.delettered?"Former Member":m.name}</div>
-                    {!m.delettered&&m.nickname&&<div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:2}}>{m.nickname}</div>}
-                    {!m.delettered&&m.dynasty&&<div style={{fontSize:9,color:c,opacity:.6,marginTop:2,textTransform:"uppercase",letterSpacing:.5}}>{m.dynasty}</div>}
-                    {expanded[m.id]&&(<>
-                      {big&&<div style={{marginTop:7,paddingTop:7,borderTop:"1px solid #0f0f1f"}} onClick={e=>{e.stopPropagation();onPickMember(big);}}>
-                        <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Big</div>
-                        <div style={{fontSize:11,color:"#666"}}>{big.delettered?"Former Member":big.name}{!big.delettered&&big.nickname&&<span style={{color:nodeC(big),marginLeft:4,fontStyle:"italic"}}>· {big.nickname}</span>}</div>
-                      </div>}
-                      {littles.length>0&&<div style={{marginTop:6}} onClick={e=>e.stopPropagation()}>
-                        <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Littles</div>
-                        {littles.map(l=><div key={l.id} style={{fontSize:11,color:"#666",cursor:"pointer"}} onClick={e=>{e.stopPropagation();onPickMember(l);}}>{l.delettered?"Former Member":l.name}{!l.delettered&&l.nickname&&<span style={{color:nodeC(l),marginLeft:4,fontStyle:"italic"}}>· {l.nickname}</span>}</div>)}
-                      </div>}
-                      {!big&&littles.length===0&&<div style={{marginTop:7,fontSize:11,color:"#333",fontStyle:"italic"}}>No big or littles</div>}
-                    </>)}
+                {(ch?.nmd||ch?.nme||ch?.president)&&(
+                  <div style={{display:"flex",gap:24,flexWrap:"wrap",marginBottom:8}}>
+                    {ch?.nmd&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#f43f5e44",textTransform:"uppercase",letterSpacing:1,fontWeight:700}}>NMD</span><span style={{fontSize:12,color:"#884455"}}>{ch.nmd}</span></div>}
+                    {ch?.nme&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#0ea5e944",textTransform:"uppercase",letterSpacing:1,fontWeight:700}}>NME</span><span style={{fontSize:12,color:"#336677"}}>{ch.nme}</span></div>}
+                    {ch?.president&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#10b98144",textTransform:"uppercase",letterSpacing:1,fontWeight:700}}>Pres</span><span style={{fontSize:12,color:"#336655"}}>{ch.president}</span></div>}
                   </div>
-                );
-              })}
+                )}
+                <div style={{height:1,background:"linear-gradient(90deg,#1a1a2e,transparent)",marginTop:10}}/>
+              </div>
+
+              {/* Member list */}
+              <div style={{display:"flex",flexDirection:"column",gap:0}}>
+                {byClass[cn].map((m,idx)=>{
+                  const c=nodeC(m);
+                  const big=m.bigId?byId[m.bigId]:null;
+                  const littles=(byId[m.id]?.children||[]);
+                  const lineNum=getLineNum(m);
+                  const isExp=expanded[m.id];
+                  return(
+                    <div key={m.id}
+                      style={{display:"flex",alignItems:"flex-start",gap:0,padding:"9px 0",borderBottom:"1px solid #0a0a16",cursor:"pointer",transition:"all .15s"}}
+                      onClick={()=>toggleExpand(m.id)}
+                      onMouseEnter={e=>e.currentTarget.style.background="#080812"}
+                      onMouseLeave={e=>e.currentTarget.style.background="transparent"}>
+                      {/* Line number */}
+                      <div style={{width:44,flexShrink:0,paddingTop:1}}>
+                        {lineNum&&<span style={{fontSize:10,color:"#222",fontWeight:600}}>#{lineNum}</span>}
+                      </div>
+                      {/* Dynasty dot */}
+                      <div style={{width:20,flexShrink:0,paddingTop:5}}>
+                        {m.dynasty&&<div style={{width:6,height:6,borderRadius:"50%",background:c}}/>}
+                      </div>
+                      {/* Main content */}
+                      <div style={{flex:1}}>
+                        <div style={{display:"flex",alignItems:"baseline",gap:10,flexWrap:"wrap"}}>
+                          <span style={{fontSize:13,fontWeight:600,color:m.delettered?"#333":"#e8e8f0",fontStyle:m.delettered?"italic":"normal"}}>{m.delettered?"Former Member":m.name}</span>
+                          {!m.delettered&&m.nickname&&<span style={{fontSize:11,color:c,fontStyle:"italic"}}>{m.nickname}</span>}
+                        </div>
+                        {/* Expanded big/littles */}
+                        {isExp&&!m.delettered&&(
+                          <div style={{marginTop:8,paddingLeft:0,display:"flex",flexDirection:"column",gap:6}}>
+                            {big&&<div style={{display:"flex",gap:8,alignItems:"center"}} onClick={e=>{e.stopPropagation();onPickMember(big);}}>
+                              <span style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.8,width:32,flexShrink:0}}>Big</span>
+                              <span style={{fontSize:12,color:"#666",cursor:"pointer"}}>{big.delettered?"Former Member":big.name}{!big.delettered&&big.nickname&&<span style={{color:nodeC(big),marginLeft:6,fontStyle:"italic"}}>· {big.nickname}</span>}</span>
+                            </div>}
+                            {littles.length>0&&<div style={{display:"flex",gap:8,alignItems:"flex-start"}}>
+                              <span style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.8,width:32,flexShrink:0,paddingTop:2}}>Lil</span>
+                              <div style={{display:"flex",flexDirection:"column",gap:3}}>
+                                {littles.map(l=><span key={l.id} style={{fontSize:12,color:"#666",cursor:"pointer"}} onClick={e=>{e.stopPropagation();onPickMember(l);}}>{l.delettered?"Former Member":l.name}{!l.delettered&&l.nickname&&<span style={{color:nodeC(l),marginLeft:6,fontStyle:"italic"}}>· {l.nickname}</span>}</span>)}
+                              </div>
+                            </div>}
+                            {!big&&littles.length===0&&<span style={{fontSize:11,color:"#222",fontStyle:"italic"}}>No connections recorded</span>}
+                          </div>
+                        )}
+                      </div>
+                      {/* Expand indicator */}
+                      {!m.delettered&&(big||littles.length>0)&&<div style={{fontSize:10,color:"#222",paddingTop:3,paddingLeft:8}}>{isExp?"▴":"▾"}</div>}
+                    </div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
-        );
-      })}
+          );
+        })}
+      </div>
     </div>
   );
 }
