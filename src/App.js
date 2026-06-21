@@ -454,11 +454,10 @@ function AdminDashboard({currentUser,onClose}){
 
 // ─── By Class Tab ─────────────────────────────────────────────────────────────
 function ByClassTab({members,byId,onPickMember}){
-  const chapterLineNum={};let counter=1;
-  CLASS_ORDER.forEach(cn=>{members.filter(m=>m.class_name===cn).forEach(m=>{chapterLineNum[m.id]=counter++;});});
   const byClass={};CLASS_ORDER.forEach(c=>{byClass[c]=[];});
   members.forEach(m=>{if(byClass[m.class_name])byClass[m.class_name].push(m);});
   const nodeC=m=>m.dynasty&&DYNASTY_COLORS[m.dynasty]?DYNASTY_COLORS[m.dynasty]:classColor(m.class_name);
+  const getLineNum=m=>{if(m.id.startsWith('FM'))return Number(m.id.replace('FM',''));const n=Number(m.id);return isNaN(n)?null:n;};
   return(
     <div style={{padding:"80px 32px 60px",overflowY:"auto",height:"100vh",boxSizing:"border-box",background:"#06060f"}}>
       {CLASS_ORDER.filter(c=>byClass[c].length>0).map(cn=>{
@@ -485,7 +484,7 @@ function ByClassTab({members,byId,onPickMember}){
                 const c=nodeC(m);
                 const big=m.bigId?byId[m.bigId]:null;
                 const littles=(byId[m.id]?.children||[]);
-                const lineNum=chapterLineNum[m.id];
+                const lineNum=getLineNum(m);
                 return(
                   <div key={m.id} onClick={()=>onPickMember(m)}
                     style={{background:"#0c0c1c",border:`1px solid ${c}22`,borderRadius:12,padding:"10px 14px",cursor:"pointer",minWidth:160,maxWidth:220,flex:"1 1 160px",transition:"all .15s",borderLeft:`3px solid ${c}`,position:"relative"}}
@@ -709,7 +708,7 @@ export default function App(){
                   <text x={13} y={20} fill="#f0f0f0" fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif">{m.name.length>18?m.name.slice(0,17)+"…":m.name}</text>
                   {m.nickname&&<text x={13} y={33} fill={c} fontSize={10.5} fontFamily="'DM Sans',sans-serif" opacity={.95}>{m.nickname.length>20?m.nickname.slice(0,19)+"…":m.nickname}</text>}
                   <text x={13} y={46} fill="#444" fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
-                  {m.lineNumber&&<text x={NODE_W-8} y={20} fill="#333" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">#{m.lineNumber}</text>}
+                  {(()=>{const ln=m.id.startsWith('FM')?Number(m.id.replace('FM','')):Number(m.id);return !isNaN(ln)?<text x={NODE_W-8} y={20} fill="#333" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">#{ln}</text>:null;})()}
                   {littles>0&&<text x={NODE_W-8} y={58} fill="#444" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">{littles}↓</text>}
                 </g>
               );
@@ -731,7 +730,7 @@ export default function App(){
           <div style={{display:"flex",flexWrap:"wrap",gap:5,marginBottom:12}}>
             <span style={{padding:"3px 9px",borderRadius:20,fontSize:11,fontWeight:500,background:nodeC(selM)+"22",color:nodeC(selM),border:`1px solid ${nodeC(selM)}44`}}>{selM.class_name}</span>
             {selM.dynasty&&<span style={{padding:"3px 9px",borderRadius:20,fontSize:11,fontWeight:500,background:(DYNASTY_COLORS[selM.dynasty]||"#888")+"22",color:DYNASTY_COLORS[selM.dynasty]||"#888",border:`1px solid ${(DYNASTY_COLORS[selM.dynasty]||"#888")}44`}}>{selM.dynasty} Line</span>}
-            {selM.lineNumber&&<span style={{padding:"3px 9px",borderRadius:20,fontSize:11,color:"#555",border:"1px solid #1a1a2e"}}>#{selM.lineNumber}</span>}
+            {(()=>{const ln=selM.id.startsWith('FM')?Number(selM.id.replace('FM','')):Number(selM.id);return !isNaN(ln)?<span style={{padding:'3px 9px',borderRadius:20,fontSize:11,color:'#555',border:'1px solid #1a1a2e'}}>#{ln}</span>:null;})()}
             {selM.semester&&<span style={{padding:"3px 9px",borderRadius:20,fontSize:11,color:"#555",border:"1px solid #1a1a2e"}}>{selM.semester}</span>}
           </div>
           <div style={{display:"flex",flexDirection:"column",gap:10,marginBottom:14,fontSize:13}}>
