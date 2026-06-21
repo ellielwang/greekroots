@@ -606,15 +606,6 @@ export default function App(){
           )}
         </div>
 
-        {/* Color toggle — tree only */}
-        {activeTab==="tree"&&(
-          <div style={{pointerEvents:"all",display:"flex",gap:4,background:"#101020",border:"1px solid #22223a",borderRadius:8,padding:3}}>
-            {[["class","By Class"],["dynasty","By Dynasty"]].map(([k,l])=>(
-              <button key={k} onClick={()=>setColorMode(k)} style={{padding:"5px 10px",borderRadius:6,border:"none",fontSize:11,fontWeight:500,cursor:"pointer",background:colorMode===k?"#c0392b":"transparent",color:colorMode===k?"white":"#666",transition:"all .15s"}}>{l}</button>
-            ))}
-          </div>
-        )}
-
         {/* Auth + admin controls */}
         <div style={{pointerEvents:"all",display:"flex",alignItems:"center",gap:8}}>
           {isAdmin&&(<><button className="btn bp" onClick={()=>{setPanel("add");setSelected(null);}}>+ Add</button><button className="btn bg" onClick={()=>setShowDashboard(true)} style={{padding:"8px 10px",fontSize:15}} title="User Management">⚙</button></>)}
