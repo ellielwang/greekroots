@@ -580,7 +580,7 @@ export default function App(){
   const[showDashboard,setShowDashboard]=useState(false);const[activeTab,setActiveTab]=useState("tree");
   const[members,setMembers]=useState(ASR_MEMBERS);const[selected,setSelected]=useState(null);const[highlighted,setHighlighted]=useState(null);
   const[search,setSearch]=useState("");const[searchResults,setSearchResults]=useState([]);
-  const[zoom,setZoom]=useState(0.5);const[pan,setPan]=useState({x:80,y:100});const[isPanning,setIsPanning]=useState(false);
+  const[zoom,setZoom]=useState(0.12);const[pan,setPan]=useState({x:80,y:100});const[isPanning,setIsPanning]=useState(false);
   const[dynastyFilter,setDynastyFilter]=useState(null);const[colorMode,setColorMode]=useState("dynasty");
   const[panel,setPanel]=useState(null);const[form,setForm]=useState({name:"",nickname:"",class_name:"Alpha Phi",bigId:""});
   const panStart=useRef(null);const svgRef=useRef(null);
@@ -600,6 +600,25 @@ export default function App(){
   const vals=Object.values(positions);
   const bounds=vals.length?{minX:Math.min(...vals.map(p=>p.x))-NODE_W/2-60,minY:Math.min(...vals.map(p=>p.y))-40,maxX:Math.max(...vals.map(p=>p.x))+NODE_W/2+60,maxY:Math.max(...vals.map(p=>p.y))+NODE_H+60}:{minX:0,minY:0,maxX:1200,maxY:800};
   const svgW=bounds.maxX-bounds.minX,svgH=bounds.maxY-bounds.minY;
+
+  // Auto-fit tree to viewport on load and dynasty filter change
+  const containerRef = useRef(null);
+  useEffect(()=>{
+    if(activeTab!=="tree") return;
+    const vals=Object.values(positions);
+    if(!vals.length) return;
+    const minX=Math.min(...vals.map(p=>p.x))-NODE_W/2-60;
+    const minY=Math.min(...vals.map(p=>p.y))-40;
+    const maxX=Math.max(...vals.map(p=>p.x))+NODE_W/2+60;
+    const maxY=Math.max(...vals.map(p=>p.y))+NODE_H+60;
+    const treeW=maxX-minX, treeH=maxY-minY;
+    const vw=window.innerWidth, vh=window.innerHeight;
+    const fitZoom=Math.min((vw-40)/treeW,(vh-120)/treeH,0.5);
+    const centeredX=(vw-treeW*fitZoom)/2 - minX*fitZoom;
+    const centeredY=100 - minY*fitZoom;
+    setZoom(fitZoom);
+    setPan({x:centeredX, y:centeredY});
+  },[dynastyFilter, activeTab]);
 
   useEffect(()=>{const el=svgRef.current;const fn=e=>{e.preventDefault();setZoom(z=>Math.max(0.08,Math.min(3,z*(e.deltaY>0?.92:1.09))));};el?.addEventListener("wheel",fn,{passive:false});return()=>el?.removeEventListener("wheel",fn);},[]);
 
@@ -698,7 +717,7 @@ export default function App(){
       {/* Zoom controls — tree only */}
       {activeTab==="tree"&&(
         <div style={{position:"absolute",bottom:24,right:20,zIndex:10,display:"flex",flexDirection:"column",gap:4}}>
-          {[["＋",()=>setZoom(z=>Math.min(3,z*1.2))],["－",()=>setZoom(z=>Math.max(0.08,z/1.2))],["⊡",()=>{setZoom(0.5);setPan({x:80,y:100});}]].map(([l,fn])=>(
+          {[["＋",()=>setZoom(z=>Math.min(3,z*1.2))],["－",()=>setZoom(z=>Math.max(0.08,z/1.2))],["⊡",()=>{const vals=Object.values(positions);if(!vals.length)return;const minX=Math.min(...vals.map(p=>p.x))-NODE_W/2-60,minY=Math.min(...vals.map(p=>p.y))-40,maxX=Math.max(...vals.map(p=>p.x))+NODE_W/2+60,maxY=Math.max(...vals.map(p=>p.y))+NODE_H+60,treeW=maxX-minX,treeH=maxY-minY,vw=window.innerWidth,vh=window.innerHeight,fitZoom=Math.min((vw-40)/treeW,(vh-120)/treeH,0.5);setZoom(fitZoom);setPan({x:(vw-treeW*fitZoom)/2-minX*fitZoom,y:100-minY*fitZoom});}]].map(([l,fn])=>(
             <button key={l} onClick={fn} style={{width:34,height:34,borderRadius:7,background:"#0c0c1c",border:"1px solid #1a1a2e",color:"#777",fontSize:l==="⊡"?14:18,cursor:"pointer",display:"flex",alignItems:"center",justifyContent:"center"}}>{l}</button>
           ))}
         </div>
