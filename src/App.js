@@ -453,32 +453,63 @@ function AdminDashboard({currentUser,onClose}){
 }
 
 // ─── By Class Tab ─────────────────────────────────────────────────────────────
-function ByClassTab({members,onPickMember}){
+function ByClassTab({members,byId,onPickMember}){
+  const chapterLineNum={};let counter=1;
+  CLASS_ORDER.forEach(cn=>{members.filter(m=>m.class_name===cn).forEach(m=>{chapterLineNum[m.id]=counter++;});});
   const byClass={};CLASS_ORDER.forEach(c=>{byClass[c]=[];});
   members.forEach(m=>{if(byClass[m.class_name])byClass[m.class_name].push(m);});
   const nodeC=m=>m.dynasty&&DYNASTY_COLORS[m.dynasty]?DYNASTY_COLORS[m.dynasty]:classColor(m.class_name);
   return(
-    <div style={{padding:"80px 24px 40px",overflowY:"auto",height:"100vh",boxSizing:"border-box"}}>
-      {CLASS_ORDER.filter(c=>byClass[c].length>0).map(cn=>(
-        <div key={cn} style={{marginBottom:32}}>
-          <div style={{display:"flex",alignItems:"baseline",gap:10,marginBottom:12}}>
-            <div style={{fontFamily:"'Playfair Display',serif",fontSize:18,color:"#f0f0f0"}}>{cn}</div>
-            <div style={{fontSize:11,color:"#333"}}>{byClass[cn][0]?.semester}</div>
-            <div style={{fontSize:11,color:"#444",marginLeft:"auto"}}>{byClass[cn].length} members</div>
-          </div>
-          <div style={{display:"flex",flexWrap:"wrap",gap:8}}>
-            {byClass[cn].map(m=>(
-              <div key={m.id} onClick={()=>onPickMember(m)} style={{background:"#0c0c1c",border:`1px solid ${nodeC(m)}33`,borderRadius:10,padding:"8px 12px",cursor:"pointer",minWidth:140,transition:"all .15s",borderLeft:`3px solid ${nodeC(m)}`}}
-                onMouseEnter={e=>e.currentTarget.style.background="#12122a"}
-                onMouseLeave={e=>e.currentTarget.style.background="#0c0c1c"}>
-                <div style={{fontSize:12,fontWeight:500,color:"#e8e8f0"}}>{m.name}</div>
-                {m.nickname&&<div style={{fontSize:11,color:nodeC(m),fontStyle:"italic",marginTop:1}}>{m.nickname}</div>}
-                {m.lineNumber&&<div style={{fontSize:10,color:"#333",marginTop:2}}>#{m.lineNumber}</div>}
+    <div style={{padding:"80px 32px 60px",overflowY:"auto",height:"100vh",boxSizing:"border-box",background:"#06060f"}}>
+      {CLASS_ORDER.filter(c=>byClass[c].length>0).map(cn=>{
+        const ch=CLASS_HISTORY.find(h=>h.class_name===cn);
+        const sem=byClass[cn][0]?.semester;
+        return(
+          <div key={cn} style={{marginBottom:48}}>
+            <div style={{marginBottom:14,paddingBottom:12,borderBottom:"1px solid #0f0f1f"}}>
+              <div style={{display:"flex",alignItems:"baseline",gap:12,marginBottom:8}}>
+                <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:"#f5f5f5"}}>{cn}</div>
+                <div style={{fontSize:12,color:"#333"}}>{sem}</div>
+                <div style={{fontSize:11,color:"#2a2a3a",marginLeft:"auto"}}>{byClass[cn].length} members</div>
               </div>
-            ))}
+              {(ch?.nmd||ch?.nme||ch?.president)&&(
+                <div style={{display:"flex",gap:20,flexWrap:"wrap"}}>
+                  {ch?.nmd&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#f43f5e",textTransform:"uppercase",letterSpacing:.8,fontWeight:600}}>NMD</span><span style={{fontSize:12,color:"#c0687a"}}>{ch.nmd}</span></div>}
+                  {ch?.nme&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#0ea5e9",textTransform:"uppercase",letterSpacing:.8,fontWeight:600}}>NME</span><span style={{fontSize:12,color:"#4a9fc0"}}>{ch.nme}</span></div>}
+                  {ch?.president&&<div style={{display:"flex",alignItems:"center",gap:6}}><span style={{fontSize:9,color:"#10b981",textTransform:"uppercase",letterSpacing:.8,fontWeight:600}}>President</span><span style={{fontSize:12,color:"#4ab891"}}>{ch.president}</span></div>}
+                </div>
+              )}
+            </div>
+            <div style={{display:"flex",flexWrap:"wrap",gap:10}}>
+              {byClass[cn].map(m=>{
+                const c=nodeC(m);
+                const big=m.bigId?byId[m.bigId]:null;
+                const littles=(byId[m.id]?.children||[]);
+                const lineNum=chapterLineNum[m.id];
+                return(
+                  <div key={m.id} onClick={()=>onPickMember(m)}
+                    style={{background:"#0c0c1c",border:`1px solid ${c}22`,borderRadius:12,padding:"10px 14px",cursor:"pointer",minWidth:160,maxWidth:220,flex:"1 1 160px",transition:"all .15s",borderLeft:`3px solid ${c}`,position:"relative"}}
+                    onMouseEnter={e=>e.currentTarget.style.background="#101028"}
+                    onMouseLeave={e=>e.currentTarget.style.background="#0c0c1c"}>
+                    <div style={{position:"absolute",top:8,right:10,fontSize:9,color:"#2a2a3a",fontWeight:600}}>#{lineNum}</div>
+                    <div style={{fontSize:12,fontWeight:600,color:"#f0f0f0",paddingRight:24,lineHeight:1.3}}>{m.name}</div>
+                    {m.nickname&&<div style={{fontSize:11,color:c,fontStyle:"italic",marginTop:2}}>{m.nickname}</div>}
+                    {m.dynasty&&<div style={{fontSize:9,color:c,opacity:.6,marginTop:2,textTransform:"uppercase",letterSpacing:.5}}>{m.dynasty}</div>}
+                    {big&&<div style={{marginTop:7,paddingTop:7,borderTop:"1px solid #0f0f1f"}}>
+                      <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Big</div>
+                      <div style={{fontSize:11,color:"#555"}}>{big.name}{big.nickname&&<span style={{color:nodeC(big),marginLeft:4,fontStyle:"italic"}}>· {big.nickname}</span>}</div>
+                    </div>}
+                    {littles.length>0&&<div style={{marginTop:6}}>
+                      <div style={{fontSize:9,color:"#2a2a3a",textTransform:"uppercase",letterSpacing:.6,marginBottom:2}}>Littles</div>
+                      <div style={{fontSize:11,color:"#555"}}>{littles.map(l=>l.nickname||l.name.split(" ")[0]).join(", ")}</div>
+                    </div>}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
@@ -658,7 +689,7 @@ export default function App(){
       </div>
 
       {/* Tab content */}
-      {activeTab==="byclass"&&<ByClassTab members={members} onPickMember={pick}/>}
+      {activeTab==="byclass"&&<ByClassTab members={members} byId={byId} onPickMember={pick}/>}
       {activeTab==="history"&&<ClassHistoryTab/>}
 
       {/* Tree canvas */}
