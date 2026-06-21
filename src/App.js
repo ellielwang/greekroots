@@ -597,6 +597,7 @@ export default function App(){
 
   const active=members.filter(m=>!dynastyFilter||m.dynasty===dynastyFilter);
   const{roots,byId}=buildTree(active);const positions=layoutTree(roots);
+  const{byId:allById}=buildTree(members);
   const vals=Object.values(positions);
   const bounds=vals.length?{minX:Math.min(...vals.map(p=>p.x))-NODE_W/2-60,minY:Math.min(...vals.map(p=>p.y))-40,maxX:Math.max(...vals.map(p=>p.x))+NODE_W/2+60,maxY:Math.max(...vals.map(p=>p.y))+NODE_H+60}:{minX:0,minY:0,maxX:1200,maxY:800};
   const svgW=bounds.maxX-bounds.minX,svgH=bounds.maxY-bounds.minY;
@@ -737,7 +738,7 @@ export default function App(){
       </div>
 
       {/* Tab content */}
-      {activeTab==="byclass"&&<ByClassTab members={members} byId={byId} onPickMember={pick}/>}
+      {activeTab==="byclass"&&<ByClassTab members={members} byId={allById} onPickMember={pick}/>}
       {activeTab==="history"&&<ClassHistoryTab/>}
 
       {/* Tree canvas */}
