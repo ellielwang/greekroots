@@ -557,6 +557,8 @@ export default function App() {
   const [form, setForm] = useState({ name:"", nickname:"", class_name:"Alpha Phi", bigId:"" });
   const panStart = useRef(null);
   const svgRef = useRef(null);
+  const lastTouchDist = useRef(null);
+  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
   const active = members.filter(m => !dynastyFilter || m.dynasty === dynastyFilter);
   const { roots, byId } = buildTree(active);
@@ -581,6 +583,22 @@ export default function App() {
   const onMouseDown = e => { if(e.target.closest(".nc")) return; setIsPanning(true); panStart.current={x:e.clientX-pan.x,y:e.clientY-pan.y}; };
   const onMouseMove = e => { if(isPanning) setPan({x:e.clientX-panStart.current.x,y:e.clientY-panStart.current.y}); };
   const onMouseUp = () => setIsPanning(false);
+
+  const onTouchStart = e => {
+    if(e.touches.length===1){ setIsPanning(true); panStart.current={x:e.touches[0].clientX-pan.x,y:e.touches[0].clientY-pan.y}; }
+    if(e.touches.length===2){ lastTouchDist.current=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY); }
+  };
+  const onTouchMove = e => {
+    e.preventDefault();
+    if(e.touches.length===1&&isPanning){ setPan({x:e.touches[0].clientX-panStart.current.x,y:e.touches[0].clientY-panStart.current.y}); }
+    if(e.touches.length===2&&lastTouchDist.current){
+      const dist=Math.hypot(e.touches[0].clientX-e.touches[1].clientX,e.touches[0].clientY-e.touches[1].clientY);
+      const delta=dist/lastTouchDist.current;
+      setZoom(z=>Math.max(0.08,Math.min(3,z*delta)));
+      lastTouchDist.current=dist;
+    }
+  };
+  const onTouchEnd = () => { setIsPanning(false); lastTouchDist.current=null; };
 
   const doSearch = q => {
     setSearch(q);
@@ -638,7 +656,7 @@ export default function App() {
 
   return (
     <div style={{width:"100vw",height:"100vh",background:"#06060f",fontFamily:"'DM Sans',sans-serif",overflow:"hidden",position:"relative",cursor:isPanning?"grabbing":"grab"}}
-      onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp}>
+      onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
@@ -656,10 +674,14 @@ export default function App() {
         .bp{background:#c0392b;color:#fff}.bp:hover{background:#a83226}
         .bg{background:transparent;color:#666;border:1px solid #22223a}.bg:hover{color:#ccc;border-color:#444}
         .bd{background:transparent;color:#e74c3c;border:1px solid #e74c3c33}.bd:hover{background:#e74c3c18}
+        @media(max-width:768px){
+          .hide-mobile{display:none!important}
+          .btn{padding:6px 10px;font-size:12px}
+        }
       `}</style>
 
       {/* Header */}
-      <div style={{position:"absolute",top:0,left:0,right:0,zIndex:10,padding:"14px 20px",display:"flex",alignItems:"center",gap:14,background:"linear-gradient(180deg,#06060f 60%,transparent)",pointerEvents:"none"}}>
+      <div style={{position:"absolute",top:0,left:0,right:0,zIndex:10,padding:"10px 14px",display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",background:"linear-gradient(180deg,#06060f 70%,transparent)",pointerEvents:"none"}}>
         <div style={{pointerEvents:"all"}}>
           <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:"#f5f5f5"}}>
             ΑΣΡ <span style={{fontStyle:"italic",fontWeight:400,fontSize:17,color:"#c0392b"}}>Family Tree</span>
@@ -672,7 +694,7 @@ export default function App() {
         <div style={{position:"relative",pointerEvents:"all",zIndex:100}}>
           <input placeholder="Search by name or line name…" value={search} onChange={e=>doSearch(e.target.value)}
             onKeyDown={e=>{if(e.key==="Escape"){setSearch("");setSearchResults([]);}}}
-            style={{width:240}}/>
+            style={{width:"min(240px,40vw)"}}/>
           {searchResults.length>0&&(
             <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:"#101020",border:"1px solid #22223a",borderRadius:10,overflow:"hidden",zIndex:200}}>
               {searchResults.map(m=>(
@@ -701,7 +723,7 @@ export default function App() {
         </div>
 
         {/* Color toggle - tree only */}
-        {activeTab==="tree" && <div style={{pointerEvents:"all",display:"flex",gap:4,background:"#101020",border:"1px solid #22223a",borderRadius:8,padding:3}}>
+        {activeTab==="tree" && <div className="hide-mobile" style={{pointerEvents:"all",display:"flex",gap:4,background:"#101020",border:"1px solid #22223a",borderRadius:8,padding:3}}>
           {[["class","By Class"],["dynasty","By Dynasty"]].map(([k,l])=>(
             <button key={k} onClick={()=>setColorMode(k)} style={{padding:"5px 10px",borderRadius:6,border:"none",fontSize:11,fontWeight:500,cursor:"pointer",
               background:colorMode===k?"#c0392b":"transparent",color:colorMode===k?"white":"#666",transition:"all .15s"}}>{l}</button>
