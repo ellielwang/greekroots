@@ -643,7 +643,12 @@ export default function App() {
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
         ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#222}
-        .nc{cursor:pointer}
+        @keyframes pulse {
+          0% { opacity: 0.6; transform: scale(1); }
+          50% { opacity: 1; transform: scale(1.04); }
+          100% { opacity: 0.6; transform: scale(1); }
+        }
+        .pulse-ring { animation: pulse 1.5s ease-in-out infinite; }
         input,select{background:#101020;border:1px solid #22223a;border-radius:8px;color:#e8e8f0;padding:8px 11px;font-family:'DM Sans',sans-serif;font-size:13px;width:100%;outline:none}
         input:focus,select:focus{border-color:#c0392b}input::placeholder{color:#444}
         select option{background:#101020}
@@ -784,6 +789,7 @@ export default function App() {
                 onClick={e=>{e.stopPropagation();if(isSel&&isHL){setSelected(null);setHighlighted(null);}else{pick(m);}}}
                 style={{opacity:focusedLineage?(inFocus?1:.12):1}}>
                 {isNew&&<rect x={-3} y={-3} width={NODE_W+6} height={NODE_H+6} rx={13} fill="none" stroke={c} strokeWidth={1.5} strokeDasharray="4 3" opacity={.7}/>}
+                {(isSel||isHL)&&<rect className="pulse-ring" x={-4} y={-4} width={NODE_W+8} height={NODE_H+8} rx={13} fill="none" stroke={c} strokeWidth={1.5} opacity={0.8}/>}
                 <rect x={0} y={0} width={NODE_W} height={NODE_H} rx={10} fill={`url(#g${m.id})`}
                   stroke={isSel||isHL?c:"#1c1c30"} strokeWidth={isSel||isHL?1.5:.7}/>
                 <rect x={0} y={0} width={4} height={NODE_H} rx={4} fill={c} opacity={.9}/>
