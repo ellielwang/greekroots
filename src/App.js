@@ -589,7 +589,32 @@ export default function App() {
     setSearchResults(members.filter(m=>(m.name.toLowerCase().includes(lq)||(m.nickname&&m.nickname.toLowerCase().includes(lq))||(m.class_name&&m.class_name.toLowerCase().includes(lq)))).slice(0,7));
   };
 
-  const pick = m => { setHighlighted(m.id); setSelected(m.id); setSearch(""); setSearchResults([]); setPanel(null); };
+  const pick = m => {
+    setHighlighted(m.id);
+    setSelected(m.id);
+    setSearch("");
+    setSearchResults([]);
+    setPanel(null);
+    // Auto-pan to center on the selected member
+    if (positions[m.id]) {
+      const pos = positions[m.id];
+      const bounds_local = (() => {
+        const vals = Object.values(positions);
+        return {
+          minX: Math.min(...vals.map(p=>p.x))-NODE_W/2-60,
+          minY: Math.min(...vals.map(p=>p.y))-40,
+        };
+      })();
+      const nodeX = (pos.x - bounds_local.minX) * zoom;
+      const nodeY = (pos.y - bounds_local.minY) * zoom;
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      setPan({
+        x: vw/2 - nodeX - (NODE_W*zoom)/2,
+        y: vh/2 - nodeY - (NODE_H*zoom)/2,
+      });
+    }
+  };
   const nodeC = m => colorMode==="dynasty" && m.dynasty && DYNASTY_COLORS[m.dynasty] ? DYNASTY_COLORS[m.dynasty] : classColor(m.class_name);
   const focusedLineage = highlighted ? getLineage(highlighted, byId) : null;
   const selM = selected ? (byId[selected]||members.find(m=>m.id===selected)) : null;
