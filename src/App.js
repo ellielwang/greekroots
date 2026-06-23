@@ -789,7 +789,7 @@ export default function App() {
                 onClick={e=>{e.stopPropagation();if(isSel&&isHL){setSelected(null);setHighlighted(null);}else{pick(m);}}}
                 style={{opacity:focusedLineage?(inFocus?1:.12):1}}>
                 {isNew&&<rect x={-3} y={-3} width={NODE_W+6} height={NODE_H+6} rx={13} fill="none" stroke={c} strokeWidth={1.5} strokeDasharray="4 3" opacity={.7}/>}
-                {(isSel||isHL)&&<rect className="pulse-ring" x={-4} y={-4} width={NODE_W+8} height={NODE_H+8} rx={13} fill="none" stroke={c} strokeWidth={1.5} opacity={0.8}/>}
+                
                 <rect x={0} y={0} width={NODE_W} height={NODE_H} rx={10} fill={`url(#g${m.id})`}
                   stroke={isSel||isHL?c:"#1c1c30"} strokeWidth={isSel||isHL?1.5:.7}/>
                 <rect x={0} y={0} width={4} height={NODE_H} rx={4} fill={c} opacity={.9}/>
