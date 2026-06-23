@@ -1,6 +1,6 @@
 # GreekRoots
 
-A web app that visualizes sorority family lineages as an interactive tree. Built for my chapter's 230-member roster after years of family history living in a spreadsheet nobody could read.
+A web app that visualizes sorority family lineages as an interactive tree. Built for my chapter's 230-member roster after years of family history living in a spreadsheet nobody would read.
 
 ## What it does
 
