@@ -573,6 +573,16 @@ export default function App() {
   } : {minX:0,minY:0,maxX:1200,maxY:800};
   const svgW = bounds.maxX-bounds.minX, svgH = bounds.maxY-bounds.minY;
 
+  // Handle ?member= URL param on load
+  useEffect(()=>{
+    const params = new URLSearchParams(window.location.search);
+    const memberId = params.get('member');
+    if(memberId){
+      const found = ASR_MEMBERS.find(m=>m.id===memberId);
+      if(found){ setTimeout(()=>pick(found), 300); }
+    }
+  }, []);
+
   useEffect(()=>{
     const el = svgRef.current;
     const fn = e => { e.preventDefault(); setZoom(z=>Math.max(0.08,Math.min(3,z*(e.deltaY>0?.92:1.09)))); };
@@ -875,6 +885,14 @@ export default function App() {
             <button className="btn bg" style={{textAlign:"left",fontSize:12}}
               onClick={()=>{setForm({name:"",nickname:"",class_name:"Alpha Phi",bigId:selM.id});setPanel("add");}}>
               + Add little under {selM.name.split(" ")[0]}
+            </button>
+            <button className="btn bg" style={{textAlign:"left",fontSize:12}}
+              onClick={()=>{
+                const url = `${window.location.origin}${window.location.pathname}?member=${selM.id}`;
+                navigator.clipboard.writeText(url);
+                alert("Link copied! 🌹");
+              }}>
+              🔗 Copy link to {selM.status==="deletter"?"this member":selM.name.split(" ")[0]}
             </button>
           </div>
         </div>
