@@ -647,6 +647,26 @@ export default function App() {
   const focusedLineage = highlighted ? getLineage(highlighted, byId) : null;
   const selM = selected ? (byId[selected]||members.find(m=>m.id===selected)) : null;
 
+  const fitToScreen = () => {
+    if(Object.keys(positions).length === 0) return;
+    const vals = Object.values(positions);
+    const minX = Math.min(...vals.map(p=>p.x)) - NODE_W/2 - 60;
+    const minY = Math.min(...vals.map(p=>p.y)) - 40;
+    const maxX = Math.max(...vals.map(p=>p.x)) + NODE_W/2 + 60;
+    const maxY = Math.max(...vals.map(p=>p.y)) + NODE_H + 60;
+    const treeW = maxX - minX;
+    const treeH = maxY - minY;
+    const vw = window.innerWidth;
+    const vh = window.innerHeight;
+    const newZoom = Math.min(vw / treeW, vh / treeH) * 0.85;
+    const clampedZoom = Math.max(0.08, Math.min(3, newZoom));
+    setZoom(clampedZoom);
+    setPan({
+      x: (vw - treeW * clampedZoom) / 2 - minX * clampedZoom,
+      y: (vh - treeH * clampedZoom) / 2 - minY * clampedZoom,
+    });
+  };
+
   const addMember = () => {
     if(!form.name.trim()) return;
     const nm={id:String(Date.now()),name:form.name.trim(),nickname:form.nickname.trim()||null,class_name:form.class_name,semester:"Spring 2026",bigId:form.bigId||null,dynasty:null};
