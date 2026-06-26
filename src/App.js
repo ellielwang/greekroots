@@ -403,7 +403,7 @@ const CLASS_HISTORY = [
   {class_name:"Alpha Phi", semester:"Spring 2026", nmd:"Saahithya Gutta", nme:"Samantha Ferrer-Smallwood", president:"Simone Cho"},
 ];
 
-function ClassByView({ members, byId }) {
+function ClassByView({ members, byId, darkMode=true }) {
   const [selM, setSelM] = useState(null);
   const grouped = {};
   CLASS_ORDER.forEach(c => { grouped[c] = []; });
@@ -414,7 +414,7 @@ function ClassByView({ members, byId }) {
   const nodeC = m => m.dynasty && DYNASTY_COLORS[m.dynasty] ? DYNASTY_COLORS[m.dynasty] : classColor(m.class_name);
 
   return (
-    <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:"#06060f"}}>
+    <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:darkMode?"#06060f":"#f5f5f5"}}>
       <div style={{maxWidth:860,margin:"0 auto",display:"flex",flexDirection:"column",gap:0}}>
         {classes.map((cls, i) => {
           const classMembers = grouped[cls];
@@ -492,9 +492,9 @@ function ClassByView({ members, byId }) {
 }
 
 
-function ClassHistoryView() {
+function ClassHistoryView({ darkMode=true }) {
   return (
-    <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:"#06060f"}}>
+    <div style={{width:"100%",height:"100%",overflowY:"auto",padding:"100px 24px 60px",background:darkMode?"#06060f":"#f5f5f5"}}>
       <div style={{maxWidth:780,margin:"0 auto"}}>
         <div style={{marginBottom:32}}>
           <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:"#f0f0f0",marginBottom:4}}>Class History</div>
@@ -552,6 +552,7 @@ export default function App() {
   const [isPanning, setIsPanning] = useState(false);
   const [dynastyFilter, setDynastyFilter] = useState(null);
   const [activeTab, setActiveTab] = useState('tree');
+  const [darkMode, setDarkMode] = useState(true);
   const [colorMode, setColorMode] = useState("dynasty");
   const [panel, setPanel] = useState(null);
   const [form, setForm] = useState({ name:"", nickname:"", class_name:"Alpha Phi", bigId:"" });
@@ -685,7 +686,7 @@ export default function App() {
   });
 
   return (
-    <div style={{width:"100vw",height:"100vh",background:"#06060f",fontFamily:"'DM Sans',sans-serif",overflow:"hidden",position:"relative",cursor:isPanning?"grabbing":"grab"}}
+    <div style={{width:"100vw",height:"100vh",background:darkMode?"#06060f":"#f5f5f5",fontFamily:"'DM Sans',sans-serif",overflow:"hidden",position:"relative",cursor:isPanning?"grabbing":"grab"}}
       onMouseDown={onMouseDown} onMouseMove={onMouseMove} onMouseUp={onMouseUp} onMouseLeave={onMouseUp} onTouchStart={onTouchStart} onTouchMove={onTouchMove} onTouchEnd={onTouchEnd}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,700;1,400&display=swap');
@@ -711,12 +712,12 @@ export default function App() {
       `}</style>
 
       {/* Header */}
-      <div style={{position:"absolute",top:0,left:0,right:0,zIndex:10,padding:"10px 14px",display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",background:"linear-gradient(180deg,#06060f 70%,transparent)",pointerEvents:"none"}}>
+      <div style={{position:"absolute",top:0,left:0,right:0,zIndex:10,padding:"10px 14px",display:"flex",alignItems:"center",gap:8,flexWrap:"wrap",background:darkMode?"linear-gradient(180deg,#06060f 70%,transparent)":"linear-gradient(180deg,#f5f5f5 70%,transparent)",pointerEvents:"none"}}>
         <div style={{pointerEvents:"all"}}>
-          <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:"#f5f5f5"}}>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,color:darkMode?"#f5f5f5":"#1a1a1a"}}>
             ΑΣΡ <span style={{fontStyle:"italic",fontWeight:400,fontSize:17,color:"#c0392b"}}>Family Tree</span>
           </div>
-          <div style={{fontSize:9,color:"#444",marginTop:1,letterSpacing:.8}}>UGA · ALPHA CHAPTER · EST. APRIL 2, 1998</div>
+          <div style={{fontSize:9,color:darkMode?"#444":"#888",marginTop:1,letterSpacing:.8}}>UGA · ALPHA CHAPTER · EST. APRIL 2, 1998</div>
         </div>
         <div style={{flex:1}}/>
 
@@ -724,7 +725,7 @@ export default function App() {
         <div style={{position:"relative",pointerEvents:"all",zIndex:100}}>
           <input placeholder="Search by name or line name…" value={search} onChange={e=>doSearch(e.target.value)}
             onKeyDown={e=>{if(e.key==="Escape"){setSearch("");setSearchResults([]);}}}
-            style={{width:"min(240px,40vw)"}}/>
+            style={{width:"min(240px,40vw)",background:darkMode?"#101020":"#fff",color:darkMode?"#e8e8f0":"#1a1a1a",borderColor:darkMode?"#22223a":"#ddd"}}/>
           {searchResults.length>0&&(
             <div style={{position:"absolute",top:"calc(100% + 4px)",left:0,right:0,background:"#101020",border:"1px solid #22223a",borderRadius:10,overflow:"hidden",zIndex:200}}>
               {searchResults.map(m=>(
@@ -762,6 +763,9 @@ export default function App() {
 
         <button className="btn bp" style={{pointerEvents:"all"}} onClick={()=>{setPanel("add");setSelected(null);}}>+ Add</button>
         {highlighted&&<button className="btn bg" style={{pointerEvents:"all"}} onClick={()=>{setHighlighted(null);setSelected(null);}}>✕ Clear</button>}
+        <button onClick={()=>setDarkMode(d=>!d)} style={{pointerEvents:"all",background:"none",border:`1px solid ${darkMode?"#22223a":"#ddd"}`,borderRadius:8,padding:"6px 10px",cursor:"pointer",fontSize:16,color:darkMode?"#888":"#444"}}>
+          {darkMode?"☀️":"🌙"}
+        </button>
       </div>
 
       {/* Dynasty filter */}
@@ -779,9 +783,9 @@ export default function App() {
       </div>}
 
       {/* Stats */}
-      <div style={{position:"absolute",top:68,right:20,zIndex:9,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:10,padding:"8px 16px",display:"flex",gap:20,alignItems:"center",pointerEvents:"none"}}>
-        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:700,color:"#f5f5f5",fontFamily:"'Playfair Display',serif"}}>{stats.total}</div><div style={{fontSize:9,color:"#444",textTransform:"uppercase",letterSpacing:.8}}>Members</div></div>
-        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:700,color:"#f5f5f5",fontFamily:"'Playfair Display',serif"}}>{CLASS_ORDER.length}</div><div style={{fontSize:9,color:"#444",textTransform:"uppercase",letterSpacing:.8}}>Classes</div></div>
+      <div style={{position:"absolute",top:68,right:20,zIndex:9,background:darkMode?"#0c0c1c":"#fff",border:`1px solid ${darkMode?"#1a1a2e":"#ddd"}`,borderRadius:10,padding:"8px 16px",display:"flex",gap:20,alignItems:"center",pointerEvents:"none"}}>
+        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:700,color:darkMode?"#f5f5f5":"#1a1a1a",fontFamily:"'Playfair Display',serif"}}>{stats.total}</div><div style={{fontSize:9,color:darkMode?"#444":"#888",textTransform:"uppercase",letterSpacing:.8}}>Members</div></div>
+        <div style={{textAlign:"center"}}><div style={{fontSize:20,fontWeight:700,color:darkMode?"#f5f5f5":"#1a1a1a",fontFamily:"'Playfair Display',serif"}}>{CLASS_ORDER.length}</div><div style={{fontSize:9,color:darkMode?"#444":"#888",textTransform:"uppercase",letterSpacing:.8}}>Classes</div></div>
         <div style={{textAlign:"center"}}><div style={{fontSize:11,fontWeight:600,color:"#c0392b"}}>Newest</div><div style={{fontSize:10,color:"#888"}}>Alpha Phi SP26</div></div>
       </div>
 
@@ -794,12 +798,12 @@ export default function App() {
 
       {/* Dynasty legend */}
       {colorMode==="dynasty"&&(
-        <div style={{position:"absolute",bottom:24,left:20,zIndex:9,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:10,padding:"10px 14px",pointerEvents:"none"}}>
-          <div style={{fontSize:9,color:"#333",textTransform:"uppercase",letterSpacing:1,marginBottom:6}}>Dynasties</div>
+        <div style={{position:"absolute",bottom:24,left:20,zIndex:9,background:darkMode?"#0c0c1c":"#fff",border:`1px solid ${darkMode?"#1a1a2e":"#ddd"}`,borderRadius:10,padding:"10px 14px",pointerEvents:"none"}}>
+          <div style={{fontSize:9,color:darkMode?"#333":"#aaa",textTransform:"uppercase",letterSpacing:1,marginBottom:6}}>Dynasties</div>
           {DYNASTIES.map(d=>(
             <div key={d} style={{display:"flex",alignItems:"center",gap:7,marginBottom:3}}>
               <div style={{width:8,height:8,borderRadius:"50%",background:DYNASTY_COLORS[d]}}/>
-              <span style={{fontSize:11,color:"#777"}}>{d}</span>
+              <span style={{fontSize:11,color:darkMode?"#777":"#555"}}>{d}</span>
             </div>
           ))}
         </div>
@@ -807,7 +811,7 @@ export default function App() {
 
       {/* Canvas - tree only */}
       {activeTab==="tree" && <div ref={svgRef} style={{width:"100%",height:"100%",overflow:"hidden"}}>
-        <svg style={{transform:`translate(${pan.x}px,${pan.y}px) scale(${zoom})`,transformOrigin:"0 0",willChange:"transform"}} width={svgW} height={svgH}>
+        <svg style={{transform:`translate(${pan.x}px,${pan.y}px) scale(${zoom})`,transformOrigin:"0 0",willChange:"transform",background:darkMode?"#06060f":"#f5f5f5"}} width={svgW} height={svgH}>
           <defs>
             {active.map(m=>{
               const c=nodeC(m);
@@ -842,16 +846,16 @@ export default function App() {
                 style={{opacity:focusedLineage?(inFocus?1:.12):1}}>
                 {isNew&&<rect x={-3} y={-3} width={NODE_W+6} height={NODE_H+6} rx={13} fill="none" stroke={c} strokeWidth={1.5} strokeDasharray="4 3" opacity={.7}/>}
                 
-                <rect x={0} y={0} width={NODE_W} height={NODE_H} rx={10} fill={`url(#g${m.id})`}
-                  stroke={isSel||isHL?c:"#1c1c30"} strokeWidth={isSel||isHL?1.5:.7}/>
+                <rect x={0} y={0} width={NODE_W} height={NODE_H} rx={10} fill={darkMode?`url(#g${m.id})`:'#fff'}
+                  stroke={isSel||isHL?c:darkMode?'#1c1c30':'#ddd'} strokeWidth={isSel||isHL?1.5:.7}/>
                 <rect x={0} y={0} width={4} height={NODE_H} rx={4} fill={c} opacity={.9}/>
-                <text x={13} y={21} fill="#f0f0f0" fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif">
+                <text x={13} y={21} fill={darkMode?"#f0f0f0":"#1a1a1a"} fontSize={11.5} fontWeight={500} fontFamily="'DM Sans',sans-serif">
                   {m.status==="deletter"?"Former Member":(m.name.length>18?m.name.slice(0,17)+"…":m.name)}
                 </text>
-                {!isNaN(m.id)&&<text x={NODE_W-8} y={21} fill="#333" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">#{m.id}</text>}
+                {!isNaN(m.id)&&<text x={NODE_W-8} y={21} fill={darkMode?"#333":"#bbb"} fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">#{m.id}</text>}
                 {m.nickname&&<text x={13} y={35} fill={c} fontSize={10.5} fontFamily="'DM Sans',sans-serif" opacity={.95}>{m.nickname.length>20?m.nickname.slice(0,19)+"…":m.nickname}</text>}
-                <text x={13} y={m.nickname?49:37} fill="#444" fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
-                {littles>0&&<text x={NODE_W-8} y={49} fill="#444" fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">{littles}↓</text>}
+                <text x={13} y={m.nickname?49:37} fill={darkMode?"#444":"#888"} fontSize={9.5} fontFamily="'DM Sans',sans-serif">{m.class_name}</text>
+                {littles>0&&<text x={NODE_W-8} y={49} fill={darkMode?"#444":"#aaa"} fontSize={9} fontFamily="'DM Sans',sans-serif" textAnchor="end">{littles}↓</text>}
               </g>
             );
           })}
@@ -859,16 +863,16 @@ export default function App() {
       </div>}
 
       {/* Class History View */}
-      {activeTab==="history" && <ClassHistoryView/>}
-      {activeTab==="byclass" && <ClassByView members={members} byId={byId}/>}
+      {activeTab==="history" && <ClassHistoryView darkMode={darkMode}/>}
+      {activeTab==="byclass" && <ClassByView members={members} byId={byId} darkMode={darkMode}/>}
 
       {/* Detail panel */}
       {activeTab==="tree"&&selM&&panel!=="add"&&(
-        <div style={{position:"absolute",top:"50%",right:20,transform:"translateY(-50%)",width:260,background:"#0c0c1c",border:"1px solid #1a1a2e",borderRadius:14,padding:18,zIndex:20}}
+        <div style={{position:"absolute",top:"50%",right:20,transform:"translateY(-50%)",width:260,background:darkMode?"#0c0c1c":"#fff",border:`1px solid ${darkMode?"#1a1a2e":"#ddd"}`,borderRadius:14,padding:18,zIndex:20}}
           onClick={e=>e.stopPropagation()}>
           <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:12}}>
             <div>
-              <div style={{fontSize:15,fontWeight:600,color:"#f0f0f0",lineHeight:1.3}}>{selM.status==="deletter"?"Former Member":selM.name}</div>
+              <div style={{fontSize:15,fontWeight:600,color:darkMode?"#f0f0f0":"#1a1a1a",lineHeight:1.3}}>{selM.status==="deletter"?"Former Member":selM.name}</div>
               {selM.nickname&&<div style={{fontSize:12,color:nodeC(selM),marginTop:2,fontStyle:"italic"}}>"{selM.nickname}"</div>}
             </div>
             <button onClick={()=>{setSelected(null);setHighlighted(null);}} style={{background:"none",border:"none",color:"#444",cursor:"pointer",fontSize:19,lineHeight:1}}>×</button>
@@ -946,7 +950,7 @@ export default function App() {
         </div>
       )}
       {/* GreekRoots watermark */}
-      <div style={{position:"absolute",bottom:12,left:20,zIndex:9,fontSize:10,color:"#444455",letterSpacing:1,fontFamily:"'DM Sans',sans-serif",pointerEvents:"none"}}>
+      <div style={{position:"absolute",bottom:12,left:20,zIndex:9,fontSize:10,color:darkMode?"#444455":"#ccc",letterSpacing:1,fontFamily:"'DM Sans',sans-serif",pointerEvents:"none"}}>
         GreekRoots
       </div>
     </div>
