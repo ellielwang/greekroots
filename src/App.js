@@ -611,6 +611,13 @@ export default function App() {
   };
   const onTouchEnd = () => { setIsPanning(false); lastTouchDist.current=null; };
 
+  // Escape key to clear highlight
+  useEffect(()=>{
+    const handler = e => { if(e.key==="Escape"){ setHighlighted(null); setSelected(null); setSearch(""); setSearchResults([]); }};
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, []);
+
   const doSearch = q => {
     setSearch(q);
     if(!q.trim()){setSearchResults([]);return;}
